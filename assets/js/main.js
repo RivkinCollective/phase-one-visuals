@@ -82,21 +82,35 @@ themeToggle.addEventListener('click', () => {
 //navbar
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-links');
+const navOverlay = document.querySelector('#nav-overlay');
+
+function openNav() {
+  menuLinks.classList.add('active');
+  menu.classList.add('is-active');
+  if (navOverlay) navOverlay.classList.add('active');
+}
+
+function closeNav() {
+  menuLinks.classList.remove('active');
+  menu.classList.remove('is-active');
+  if (navOverlay) navOverlay.classList.remove('active');
+}
 
 menu.addEventListener('click', function () {
-  // Toggles the sliding menu
-  menuLinks.classList.toggle('active');
-
-  // Toggles the hamburger to cross animation
-  this.classList.toggle('is-active');
+  if (menuLinks.classList.contains('active')) {
+    closeNav();
+  } else {
+    openNav();
+  }
 });
+
+if (navOverlay) {
+  navOverlay.addEventListener('click', closeNav);
+}
 
 // Close menu and reset icon when a link is clicked
 document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuLinks.classList.remove('active');
-    menu.classList.remove('is-active');
-  });
+  link.addEventListener('click', closeNav);
 });
 
 // --- BOOKING MODAL ---

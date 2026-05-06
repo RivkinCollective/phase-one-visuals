@@ -86,42 +86,53 @@ nav.scrolled {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0;
-  transition: color 0.2s, background 0.2s, border-color 0.2s, gap 0.2s;
+  gap: 6px;
+  transition: color 0.25s, background 0.25s, border-color 0.25s, gap 0.25s;
   white-space: nowrap;
 }
 
-/* Emoji that slides in before the text on hover */
-.nav-links a[data-emoji]::before {
-  content: attr(data-emoji);
-  display: inline-block;
-  font-size: 11px;
-  line-height: 1;
-  max-width: 0;
-  overflow: hidden;
+.nav-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
   opacity: 0;
-  transform: scale(0.6) translateX(-2px);
-  transition: max-width 0.22s ease, opacity 0.22s ease, transform 0.22s ease, margin 0.22s ease;
-  margin-right: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.nav-links a[data-emoji]:hover::before {
-  max-width: 20px;
+.nav-links a:not(.pov-btn):hover .nav-icon {
   opacity: 1;
-  transform: scale(1) translateX(0);
-  margin-right: 5px;
+  transform: translateX(0);
 }
 
 .nav-links a:not(.pov-btn):hover {
   color: var(--black);
   background: var(--mist);
   border-color: var(--divider);
-  gap: 2px;
+  gap: 8px;
 }
 
 /* Remove the old underline pseudo-element */
 .nav-links a:not(.pov-btn)::after {
   display: none;
+}
+
+/* ── Glassmorphism overlay backdrop ── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 
@@ -244,23 +255,28 @@ nav.scrolled {
     top: 0;
     right: -100%;
     width: 320px;
-    /* Drawer instead of full screen often feels more premium */
     height: 100vh;
-    background: var(--nav-bg);
+    background: rgba(248, 246, 242, 0.92);
     backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid var(--divider);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 40px;
-    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
-    gap: 12px;
+    padding: 40px 36px;
+    transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 8px;
     z-index: 1000;
+  }
+
+  [data-theme="dark"] .nav-links {
+    background: rgba(17, 17, 17, 0.94);
   }
 
   .nav-links.active {
     right: 0;
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.08);
   }
 
   .nav-links li {
@@ -297,12 +313,37 @@ nav.scrolled {
   }
 
   .nav-links a:not(.pov-btn) {
-    display: block;
-    padding: 12px 0;
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    font-size: 22px;
     font-family: var(--serif);
     font-weight: 700;
     color: var(--black);
+    border-radius: 0;
+    border: none;
+    letter-spacing: 0;
+    width: 100%;
+  }
+
+  .nav-links a:not(.pov-btn):hover {
+    color: var(--gold);
+    background: transparent;
+    gap: 16px;
+  }
+
+  .nav-links .nav-icon {
+    width: 22px;
+    height: 22px;
+    opacity: 1;
+    transform: none;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .nav-links a:not(.pov-btn):hover .nav-icon {
+    transform: translateX(3px);
   }
 
   /* Hide specific book btn in drawer since we have it on left of nav now */
