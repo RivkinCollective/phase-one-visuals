@@ -814,7 +814,7 @@ section {
   border-color: var(--gold);
   color: white;
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 28px rgba(200, 134, 26, 0.25);
 }
 
 .scroll-top-btn svg {
