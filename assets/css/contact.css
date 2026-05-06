@@ -97,6 +97,12 @@
 .btn-send:hover {
     background: var(--black) !important;
     color: var(--white) !important;
+    border-color: var(--gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(200, 134, 26, 0.15);
+}
+.btn-send:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .btn-send .label {
