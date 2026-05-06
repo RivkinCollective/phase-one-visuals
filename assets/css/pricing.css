@@ -28,7 +28,7 @@
   background: var(--white);
   border: 1.5px solid transparent;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.3s, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  transition: background 0.2s, color 0.2s, border-color 0.3s;
   font-family: var(--sans);
 }
 
@@ -48,12 +48,6 @@
 .tab-btn:not(.active):hover {
   background: var(--mist);
   border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(200, 134, 26, 0.15);
-}
-
-.tab-btn:active {
-  transform: translateY(0) scale(0.98);
 }
 
 .tab-panel {
