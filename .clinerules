@@ -1,0 +1,50 @@
+# Phase One Visuals — Universal Context Pipeline
+## Auto-runs Every Session
+
+## ON EVERY SESSION START (Auto-Execute):
+1. **Load last context** → Check `obsidian-vault/workflow-logs/` for most recent session log
+2. **Read it** → Understand what was last worked on
+3. **Run**: `node automation/load-context.js` → Loads OpenBrain memory + Graphify state
+4. **Graphify refresh** → Run `/graphify . --update` to sync any code changes into the knowledge graph
+
+## ON EVERY SESSION END (Manual / Auto):
+Run this command to save everything:
+```
+node automation/save-context.js
+```
+This will:
+- ✓ Save session log to `obsidian-vault/workflow-logs/`
+- ✓ Write findings to OpenBrain
+- ✓ Commit + push to GitHub (so next chat anywhere can pull context)
+- ✓ Print a full summary of what was done
+
+## Cross-Chat Context Sharing
+Since the vault is **git-pushed to GitHub**, any chat with access to this repo can:
+```
+git pull
+node automation/load-context.js
+```
+And get full context — works across Copilot, Claude, Cursor, any IDE.
+
+## Quick Commands
+| Action | Command |
+|--------|---------|
+| Save all context | `node automation/save-context.js` |
+| Load all context | `node automation/load-context.js` |
+| Build graph | `/graphify .` |
+| Update graph | `/graphify . --update` |
+| Query graph | `/graphify query "<question>"` |
+
+## How It Works
+```
+┌─────────────────┐     ┌───────────────────┐     ┌─────────────────┐
+│  Any Chat/IDE   │────▶│  automation/      │────▶│  GitHub Repo    │
+│  (Copilot, etc) │     │  save-context.js  │     │  (Central Hub)  │
+└─────────────────┘     └───────────────────┘     └─────────────────┘
+        │                                                     │
+        │                                                     │
+        ▼                                                     ▼
+┌─────────────────┐                                   ┌─────────────────┐
+│  obsidian-vault │◀──────────────────────────────────▶│  Next Chat Anywhere
+│  + OpenBrain    │    git push / git pull             │  gets full context
+└─────────────────┘                                   └─────────────────┘

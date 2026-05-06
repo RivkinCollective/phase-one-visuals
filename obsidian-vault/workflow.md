@@ -42,6 +42,23 @@
   - REPORT.md        - logs/                - audits
 ```
 
+## Chat-to-Chat Context Transfer
+
+The `.clinerules` file in the project root contains the authoritative instructions. This section mirrors it for clarity.
+
+### Saving Context (End of Session)
+When wrapping up, create a markdown summary in:
+```
+obsidian-vault/workflow-logs/session-YYYY-MM-DD-HHMM.md
+```
+Include: what was accomplished, key decisions made, files modified, unanswered questions, and next steps.
+
+### Loading Context (Start of Session)
+1. List `obsidian-vault/workflow-logs/` for the most recent session log
+2. Read the latest session log
+3. Search OpenBrain for relevant past decisions
+4. Run `/graphify query "<what changed last session?>"` to refresh graph context
+
 ## Usage
 
 ### Build Knowledge Graph
@@ -49,6 +66,23 @@
 /graphify .
 ```
 This generates `graphify-out/GRAPH_REPORT.md`. Archive findings to `obsidian-vault/graphify-outputs/`.
+
+### Incremental Update
+```
+/graphify . --update
+```
+Faster than a full rebuild — only processes changed files.
+
+### Query the Graph
+```
+/graphify query "<your question>"
+```
+
+### Export Obsidian Canvas
+```
+/graphify . --obsidian
+```
+Generates an interactive `.canvas` file in the vault.
 
 ### Search Memory
 Use OpenBrain tools to search the knowledge base:
@@ -62,4 +96,4 @@ Use OpenBrain tools to search the knowledge base:
 3. Link related notes using Obsidian wikilinks
 
 ## Graphify Ignore
-`.graphifyignore` excludes: `node_modules/`, `.kilocode/`, `.kilo/`, `.kiro/`, `.git/`, logs
+`.graphifyignore` excludes: `node_modules/`, `.kilocode/`, `.kilo/`, `.kiro/`, `.git/`, logs, `graphify-out/`, backups
