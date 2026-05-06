@@ -1,0 +1,348 @@
+{
+  "nodes": [
+    {
+      "id": "g0",
+      "type": "group",
+      "label": "content-manager.js, renderPricingCategory()",
+      "x": 0,
+      "y": 0,
+      "width": 660,
+      "height": 400,
+      "color": "1"
+    },
+    {
+      "id": "n_content_manager_js",
+      "type": "file",
+      "file": "content-manager.js.md",
+      "x": 20,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_content_manager_fetchpricing",
+      "type": "file",
+      "file": "fetchPricing().md",
+      "x": 220,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_content_manager_fetchsitecontent",
+      "type": "file",
+      "file": "fetchSiteContent().md",
+      "x": 420,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_content_manager_renderpricingcategory",
+      "type": "file",
+      "file": "renderPricingCategory().md",
+      "x": 20,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_content_manager_renderpricingfallback",
+      "type": "file",
+      "file": "renderPricingFallback().md",
+      "x": 220,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_content_manager_scrolltopackagecolumn",
+      "type": "file",
+      "file": "scrollToPackageColumn().md",
+      "x": 420,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g1",
+      "type": "group",
+      "label": "admin.js, reindexColumnHeaders()",
+      "x": 740,
+      "y": 0,
+      "width": 660,
+      "height": 400,
+      "color": "2"
+    },
+    {
+      "id": "n_admin_js",
+      "type": "file",
+      "file": "admin.js.md",
+      "x": 760,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_admin_deletelead",
+      "type": "file",
+      "file": "deleteLead().md",
+      "x": 960,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_admin_initadmin",
+      "type": "file",
+      "file": "initAdmin().md",
+      "x": 1160,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_admin_reindexcolumnheaders",
+      "type": "file",
+      "file": "reindexColumnHeaders().md",
+      "x": 760,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_admin_removecolumn",
+      "type": "file",
+      "file": "removeColumn().md",
+      "x": 960,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g2",
+      "type": "group",
+      "label": "main.js, closeModal()",
+      "x": 1480,
+      "y": 0,
+      "width": 600,
+      "height": 400,
+      "color": "3"
+    },
+    {
+      "id": "n_js_main_closemodal",
+      "type": "file",
+      "file": "closeModal().md",
+      "x": 1500,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_main_js",
+      "type": "file",
+      "file": "main.js.md",
+      "x": 1700,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_main_openmodal",
+      "type": "file",
+      "file": "openModal().md",
+      "x": 1900,
+      "y": 80,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_main_switchtab",
+      "type": "file",
+      "file": "switchTab().md",
+      "x": 1500,
+      "y": 160,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g3",
+      "type": "group",
+      "label": "showToast(), syncAllContent()",
+      "x": 0,
+      "y": 480,
+      "width": 600,
+      "height": 400,
+      "color": "4"
+    },
+    {
+      "id": "n_seed_data_js",
+      "type": "file",
+      "file": "seed-data.js.md",
+      "x": 20,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_admin_showtoast",
+      "type": "file",
+      "file": "showToast().md",
+      "x": 220,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "n_js_seed_data_syncallcontent",
+      "type": "file",
+      "file": "syncAllContent().md",
+      "x": 420,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g4",
+      "type": "group",
+      "label": "admin-auth.js",
+      "x": 740,
+      "y": 480,
+      "width": 600,
+      "height": 400,
+      "color": "5"
+    },
+    {
+      "id": "n_admin_auth_js",
+      "type": "file",
+      "file": "admin-auth.js.md",
+      "x": 760,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    },
+    {
+      "id": "g5",
+      "type": "group",
+      "label": "firebase-config.js",
+      "x": 1480,
+      "y": 480,
+      "width": 600,
+      "height": 400,
+      "color": "6"
+    },
+    {
+      "id": "n_firebase_config_js",
+      "type": "file",
+      "file": "firebase-config.js.md",
+      "x": 1500,
+      "y": 560,
+      "width": 180,
+      "height": 60
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_admin_js_js_admin_initadmin",
+      "fromNode": "n_admin_js",
+      "toNode": "n_js_admin_initadmin",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_admin_js_js_admin_removecolumn",
+      "fromNode": "n_admin_js",
+      "toNode": "n_js_admin_removecolumn",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_admin_js_js_admin_reindexcolumnheaders",
+      "fromNode": "n_admin_js",
+      "toNode": "n_js_admin_reindexcolumnheaders",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_admin_js_js_admin_deletelead",
+      "fromNode": "n_admin_js",
+      "toNode": "n_js_admin_deletelead",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_admin_js_js_admin_showtoast",
+      "fromNode": "n_admin_js",
+      "toNode": "n_js_admin_showtoast",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_js_admin_removecolumn_js_admin_reindexcolumnheaders",
+      "fromNode": "n_js_admin_removecolumn",
+      "toNode": "n_js_admin_reindexcolumnheaders",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_js_admin_showtoast_js_seed_data_syncallcontent",
+      "fromNode": "n_js_admin_showtoast",
+      "toNode": "n_js_seed_data_syncallcontent",
+      "label": "calls [INFERRED]"
+    },
+    {
+      "id": "e_content_manager_js_js_content_manager_renderpricingfallback",
+      "fromNode": "n_content_manager_js",
+      "toNode": "n_js_content_manager_renderpricingfallback",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_content_manager_js_js_content_manager_fetchsitecontent",
+      "fromNode": "n_content_manager_js",
+      "toNode": "n_js_content_manager_fetchsitecontent",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_content_manager_js_js_content_manager_fetchpricing",
+      "fromNode": "n_content_manager_js",
+      "toNode": "n_js_content_manager_fetchpricing",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_content_manager_js_js_content_manager_renderpricingcategory",
+      "fromNode": "n_content_manager_js",
+      "toNode": "n_js_content_manager_renderpricingcategory",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_content_manager_js_js_content_manager_scrolltopackagecolumn",
+      "fromNode": "n_content_manager_js",
+      "toNode": "n_js_content_manager_scrolltopackagecolumn",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_js_content_manager_renderpricingfallback_js_content_manager_renderpricingcategory",
+      "fromNode": "n_js_content_manager_renderpricingfallback",
+      "toNode": "n_js_content_manager_renderpricingcategory",
+      "label": "calls [EXTRACTED]"
+    },
+    {
+      "id": "e_main_js_js_main_openmodal",
+      "fromNode": "n_main_js",
+      "toNode": "n_js_main_openmodal",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_main_js_js_main_closemodal",
+      "fromNode": "n_main_js",
+      "toNode": "n_js_main_closemodal",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_main_js_js_main_switchtab",
+      "fromNode": "n_main_js",
+      "toNode": "n_js_main_switchtab",
+      "label": "contains [EXTRACTED]"
+    },
+    {
+      "id": "e_seed_data_js_js_seed_data_syncallcontent",
+      "fromNode": "n_seed_data_js",
+      "toNode": "n_js_seed_data_syncallcontent",
+      "label": "contains [EXTRACTED]"
+    }
+  ]
+}

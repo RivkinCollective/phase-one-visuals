@@ -3,5 +3,9 @@ node_modules/
 .kilo/
 .kiro/
 .git/
+Phase One Visuals*/
+_detect.py
+_build_graph.py
 *.log
 graphify-out/
+.graphify_*.json
