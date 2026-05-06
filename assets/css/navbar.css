@@ -83,33 +83,34 @@ nav.scrolled {
   padding: 6px 14px;
   border-radius: 100px;
   border: 1px solid transparent;
-  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: color 0.25s, background 0.25s, border-color 0.25s, gap 0.25s;
+  gap: 0;
+  transition: color 0.25s, background 0.25s, border-color 0.25s;
   white-space: nowrap;
 }
 
 .nav-icon {
-  width: 16px;
-  height: 16px;
+  width: 0;
+  height: 14px;
   flex-shrink: 0;
   opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateX(-3px);
+  transition: width 0.22s ease, opacity 0.22s ease, transform 0.22s ease, margin-right 0.22s ease;
+  margin-right: 0;
 }
 
 .nav-links a:not(.pov-btn):hover .nav-icon {
+  width: 14px;
   opacity: 1;
   transform: translateX(0);
+  margin-right: 5px;
 }
 
 .nav-links a:not(.pov-btn):hover {
   color: var(--black);
   background: var(--mist);
   border-color: var(--divider);
-  gap: 8px;
 }
 
 /* Remove the old underline pseudo-element */
@@ -121,13 +122,13 @@ nav.scrolled {
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .nav-overlay.active {
@@ -315,9 +316,9 @@ nav.scrolled {
   .nav-links a:not(.pov-btn) {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 0;
-    font-size: 22px;
+    gap: 10px;
+    padding: 16px 0;
+    font-size: 20px;
     font-family: var(--serif);
     font-weight: 700;
     color: var(--black);
@@ -325,25 +326,22 @@ nav.scrolled {
     border: none;
     letter-spacing: 0;
     width: 100%;
+    transition: color 0.2s;
   }
 
   .nav-links a:not(.pov-btn):hover {
     color: var(--gold);
     background: transparent;
-    gap: 16px;
   }
 
   .nav-links .nav-icon {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     opacity: 1;
     transform: none;
-    transition: transform 0.2s ease;
+    margin-right: 0;
+    transition: none;
     flex-shrink: 0;
-  }
-
-  .nav-links a:not(.pov-btn):hover .nav-icon {
-    transform: translateX(3px);
   }
 
   /* Hide specific book btn in drawer since we have it on left of nav now */
