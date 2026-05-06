@@ -1,0 +1,7 @@
+node_modules/
+.kilocode/
+.kilo/
+.kiro/
+.git/
+*.log
+graphify-out/

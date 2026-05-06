@@ -1,0 +1,9 @@
+node_modules/
+.kilocode/
+.kilo/
+.kiro/
+graphify-out/
+Phase One Visuals - AI [3-22-2026]/
+.env
+*.log
+Thumbs.db
