@@ -299,11 +299,10 @@ section {
 }
 .pov-btn:hover {
   border-color: var(--gold);
-  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(200, 134, 26, 0.15);
 }
 .pov-btn:active {
-  transform: translateY(0) scale(0.98);
+  transform: scale(0.98);
 }
 
 /* inner layout — icon + label sit together, centered as a unit */
@@ -313,12 +312,10 @@ section {
   gap: 0;
   position: relative;
   z-index: 2;
-  transition: gap .4s cubic-bezier(.77, 0, .18, 1), color 0.4s ease;
+  transition: color 0.4s ease;
 }
 
-.pov-btn:hover .btn-inner {
-  gap: 13px;
-}
+
 
 /* icon wrapper */
 .pov-btn .icon {
@@ -452,6 +449,7 @@ section {
 }
 
 .btn-pricing:hover {
+  border: 1.5px solid var(--gold);
   color: var(--white);
 }
 
