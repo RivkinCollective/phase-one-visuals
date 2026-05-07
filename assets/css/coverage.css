@@ -1,6 +1,4 @@
-.coverage-section {
-  background: var(--white);
-}
+.coverage-section { background: var(--white); }
 
 .coverage-inner {
   display: grid;
@@ -10,15 +8,12 @@
 }
 
 .coverage-map {
-  background: var(--mist);
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  position: relative;
+  background: var(--mist);
+  box-shadow: var(--elevation-2);
+  height: 400px;
 }
 
 .coverage-map iframe {
@@ -27,22 +22,27 @@
   border: none;
   filter: var(--map-filter);
   transition: filter 0.4s ease;
+  display: block;
 }
 
 .coverage-facts {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
   margin-top: 36px;
   margin-bottom: 36px;
 }
 
 .fact-box {
   border: 1px solid var(--divider);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   padding: 20px;
   background: var(--mist);
+  transition: transform var(--duration-fast) var(--ease-out-expo),
+              border-color var(--duration-fast) ease;
 }
+
+.fact-box:hover { transform: translateY(-2px); border-color: var(--gold-border); }
 
 .fact-box strong {
   font-family: var(--serif);
@@ -52,88 +52,30 @@
   display: block;
 }
 
-.fact-box span {
-  font-size: 12px;
-  color: var(--slate);
-  letter-spacing: 0.5px;
-}
+.fact-box span { font-size: 12px; color: var(--slate); letter-spacing: 0.5px; }
 
 .fact-box.gold-box {
   background: var(--gold-pale);
   border-color: var(--gold-border);
 }
 
-.fact-box.gold-box strong {
-  color: var(--gold);
-}
+.fact-box.gold-box strong { color: var(--gold); }
 
-/*  */
-
-/* ================================
-   COVERAGE SECTION RESPONSIVE
-   ================================ */
-
-/* Tablet */
 @media (max-width: 1024px) {
-
-  .coverage-inner {
-    gap: 48px;
-  }
-
-  .coverage-map {
-    height: 350px;
-  }
-
+  .coverage-inner { gap: 48px; }
+  .coverage-map { height: 350px; }
 }
 
-
-/* Mobile */
 @media (max-width: 768px) {
-
-  .coverage-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .coverage-map {
-    height: 300px;
-    order: 2;
-    /* optional: puts map above text */
-  }
-
-  .coverage-content {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .coverage-facts {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .fact-box {
-    padding: 18px;
-  }
-
-  .fact-box strong {
-    font-size: 24px;
-  }
-
+  .coverage-inner { grid-template-columns: 1fr; gap: 40px; }
+  .coverage-map { height: 300px; order: 2; }
+  .coverage-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .coverage-facts { grid-template-columns: 1fr; gap: 12px; }
+  .fact-box { padding: 18px; }
+  .fact-box strong { font-size: 24px; }
 }
 
-
-/* Small Mobile */
 @media (max-width: 480px) {
-
-  .coverage-map {
-    height: 260px;
-  }
-
-  .coverage-facts {
-    margin-top: 28px;
-    margin-bottom: 28px;
-  }
-
+  .coverage-map { height: 260px; }
+  .coverage-facts { margin-top: 28px; margin-bottom: 28px; }
 }

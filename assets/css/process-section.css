@@ -1,188 +1,67 @@
-/* ─── PROCESS SECTION ─── */
-.process-section {
-  background: var(--mist);
-  padding: 80px 20px;
-  width: 100%;
-}
+.process-section { background: var(--mist); padding: 120px 0; }
 
-/* ─── STEPS WRAPPER ─── */
-.process-steps {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--bento-gap);
   margin-top: 56px;
 }
 
-/* ─── INDIVIDUAL STEP ─── */
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 0 16px;
-  flex: 1;
-  max-width: 240px;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.step.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.step:nth-child(1) {
-  transition-delay: 0.00s;
-}
-
-.step:nth-child(3) {
-  transition-delay: 0.15s;
-}
-
-.step:nth-child(5) {
-  transition-delay: 0.30s;
-}
-
-.step:nth-child(7) {
-  transition-delay: 0.45s;
-}
-
-/* ─── CONNECTOR ─── */
-.step-connector {
-  flex: 0 0 clamp(16px, 4vw, 48px);
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-border) 100%);
-  margin-top: 27px;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.4s ease 0.3s;
-}
-
-.step-connector.visible {
-  opacity: 1;
-}
-
-.step-connector::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent 0%, var(--white) 50%, transparent 100%);
-  transform: translateX(-100%);
-}
-
-.step-connector.visible::after {
-  animation: shimmer-line 1s ease 0.6s forwards;
-}
-
-@keyframes shimmer-line {
-  to {
-    transform: translateX(250%);
-  }
-}
-
-/* ─── STEP NUMBER ─── */
-.step-num {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+.process-step {
   background: var(--white);
-  border: 2px solid var(--gold);
+  border: 1px solid var(--divider);
+  border-radius: var(--bento-radius);
+  padding: 36px 32px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 24px;
+  align-items: flex-start;
+  transition: transform var(--duration-base) var(--ease-out-expo),
+              box-shadow var(--duration-base) var(--ease-out-expo),
+              border-color var(--duration-fast) ease;
+}
+
+.process-step:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--elevation-3);
+  border-color: var(--gold-border);
+}
+
+.process-step.featured {
+  background: var(--gold-pale);
+  border-color: var(--gold-border);
+}
+
+.step-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 48px;
+}
+
+.step-text h4 {
   font-family: var(--serif);
   font-size: 20px;
   font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.step:nth-child(1) .step-num {
-  background: var(--gold);
-  color: white;
-  box-shadow: 0 0 0 7px var(--gold-glow);
-}
-
-.step:hover .step-num {
-  transform: scale(1.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
-}
-
-/* ─── TEXT ─── */
-.step h4 {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 700;
   color: var(--black);
-  margin-bottom: 10px;
-  transition: color 0.2s ease;
+  margin-bottom: 8px;
 }
 
-.step:hover h4 {
-  color: var(--gold);
-}
-
-.step p {
-  font-size: 13px;
+.step-text p {
+  font-size: 14px;
   color: var(--slate);
   line-height: 1.65;
 }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 680px) {
-  .process-steps {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px 24px;
-    align-items: start;
-  }
-
-  .step-connector {
-    display: none;
-  }
-
-  .step {
-    max-width: none;
-    padding: 0;
-  }
+@media (max-width: 768px) {
+  .process-section { padding: 80px 0; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { padding: 28px 24px; flex-direction: column; gap: 16px; }
 }
 
-@media (max-width: 420px) {
-  .process-steps {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .step {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    padding: 0 0 44px 0;
-    position: relative;
-  }
-
-  .step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 27px;
-    top: 56px;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-border) 100%);
-  }
-
-  .step-num {
-    flex-shrink: 0;
-    margin-bottom: 0;
-    margin-right: 20px;
-  }
-
-  .step-text {
-    padding-top: 10px;
-  }
+@media (max-width: 480px) {
+  .process-section { padding: 60px 0; }
+  .process-step { padding: 24px 20px; }
 }
