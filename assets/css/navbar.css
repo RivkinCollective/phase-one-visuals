@@ -354,14 +354,20 @@ nav > a:has(.nav-logo-text) {
   }
 
   #nav-rspn-btn .pov-btn {
-    width: 40px !important;
+    width: clamp(28px, 6vw, 40px) !important;
+    height: clamp(28px, 6vw, 40px) !important;
     padding: 0 !important;
     border-radius: 8px;
   }
 
   #nav-rspn-btn .icon {
-    width: 20px;
+    width: clamp(14px, 3vw, 20px);
     opacity: 1;
+  }
+
+  #nav-rspn-btn .icon svg {
+    width: clamp(14px, 3vw, 20px);
+    height: clamp(14px, 3vw, 20px);
   }
 
   .nav-right {
