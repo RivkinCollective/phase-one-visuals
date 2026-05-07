@@ -61,13 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- EXISTING LOGIC ---
 // Theme Toggle Logic
+const themeToggle = document.querySelector('#theme-toggle');
 const currentTheme = localStorage.getItem('theme');
 
 if (currentTheme) {
   document.documentElement.setAttribute('data-theme', currentTheme);
 }
 
-function toggleTheme() {
+themeToggle.addEventListener('click', () => {
   let theme = document.documentElement.getAttribute('data-theme');
   if (theme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -76,10 +77,6 @@ function toggleTheme() {
     document.documentElement.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
   }
-}
-
-document.querySelectorAll('.theme-toggle, .nav-drawer-theme-btn').forEach(btn => {
-  btn.addEventListener('click', toggleTheme);
 });
 
 //navbar
