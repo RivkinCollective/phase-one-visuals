@@ -9,7 +9,7 @@ nav {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--divider);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   padding: 0 32px;
   z-index: 1000;
@@ -75,6 +75,11 @@ nav > a:has(.nav-logo-text) {
   list-style: none;
 }
 
+/* Hide drawer theme toggle on desktop */
+.nav-drawer-theme-item {
+  display: none;
+}
+
 .nav-links a:not(.pov-btn) {
   text-decoration: none;
   font-size: 12px;
@@ -124,6 +129,7 @@ nav > a:has(.nav-logo-text) {
   align-items: center;
   gap: 24px;
   justify-self: end;
+  min-width: 0;
 }
 
 .nav-right {
@@ -212,6 +218,7 @@ nav > a:has(.nav-logo-text) {
   display: flex;
   align-items: center;
   justify-self: start;
+  min-width: 0;
 }
 
 /* ── Glass overlay ── */
@@ -292,6 +299,7 @@ nav > a:has(.nav-logo-text) {
   .nav-links.active li:nth-child(2) { transition-delay: 0.14s; }
   .nav-links.active li:nth-child(3) { transition-delay: 0.20s; }
   .nav-links.active li:nth-child(4) { transition-delay: 0.26s; }
+  .nav-links.active li:nth-child(5) { transition-delay: 0.32s; }
 
   .nav-links a:not(.pov-btn) {
     display: flex;
@@ -327,6 +335,56 @@ nav > a:has(.nav-logo-text) {
   #nav-rspn-btn {
     z-index: 1200;
   }
+
+  /* Hide external theme toggle on mobile, show drawer toggle */
+  .theme-toggle:not(.nav-drawer-theme-btn) {
+    display: none;
+  }
+
+  .nav-drawer-theme-item {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider);
+  }
+
+  .nav-drawer-theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    font-size: 20px;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--black);
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .nav-drawer-theme-btn:hover {
+    color: var(--gold);
+  }
+
+  .nav-drawer-theme-btn span {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .nav-drawer-theme-btn svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  [data-theme="dark"] .nav-drawer-theme-btn .sun-icon { display: block; }
+  [data-theme="dark"] .nav-drawer-theme-btn .moon-icon { display: none; }
+  .nav-drawer-theme-btn .sun-icon { display: none; }
+  .nav-drawer-theme-btn .moon-icon { display: block; }
 
   .phase-one {
     font-size: 18px;
