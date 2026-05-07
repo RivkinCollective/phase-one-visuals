@@ -116,6 +116,18 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', closeNav);
 });
 
+// Scroll reveal for sections
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.section').forEach(el => revealObserver.observe(el));
+
 // --- BOOKING MODAL ---
 (function () {
   const modal = document.getElementById('bookingModal');

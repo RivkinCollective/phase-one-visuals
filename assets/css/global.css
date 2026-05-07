@@ -4,6 +4,7 @@
   --gold-light: #E09B2A;
   --gold-pale: #FDF4E7;
   --gold-border: #F0C97A;
+  --gold-glow: rgba(200, 134, 26, 0.15);
 
   /* ─── NEUTRALS ─── */
   --black: #111111;
@@ -15,30 +16,27 @@
 
   /* ─── TYPOGRAPHY ─── */
   --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'DM Sans', sans-serif;
+  --sans: 'Barlow', sans-serif;
 
-  /* ─── LEGACY SHADOWS (gradual deprecation) ─── */
+  /* ─── ATMOSPHERE ─── */
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.07);
   --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.10);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.13);
-
-  /* ─── ELEVATION & GLASS ─── */
   --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-blur: blur(12px);
   --elevation-1: 0 1px 3px rgba(17, 17, 17, 0.04), 0 1px 2px rgba(17, 17, 17, 0.02);
   --elevation-2: 0 4px 12px rgba(17, 17, 17, 0.05), 0 2px 4px rgba(17, 17, 17, 0.03);
   --elevation-3: 0 12px 40px rgba(17, 17, 17, 0.07), 0 4px 12px rgba(17, 17, 17, 0.04);
-  --elevation-4: 0 24px 80px rgba(17, 17, 17, 0.10), 0 8px 24px rgba(17, 17, 17, 0.06);
 
-  /* ─── RADIUS SCALE ─── */
+  /* ─── RADIUS ─── */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 28px;
   --radius-full: 9999px;
 
-  /* ─── TRANSITION PRIMITIVES ─── */
+  /* ─── TRANSITIONS ─── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-fast: 200ms;
@@ -52,6 +50,7 @@
   --footer-title: #FFFFFF;
   --map-filter: none;
   --construction-bg: var(--black);
+  --hero-overlay: linear-gradient(135deg, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.4) 50%, rgba(17,17,17,0.6) 100%);
 }
 
 [data-theme="dark"] {
@@ -71,6 +70,7 @@
   --footer-title: #F8F6F2;
   --map-filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
   --construction-bg: #1A1A1A;
+  --hero-overlay: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
 }
 
 *,
@@ -87,7 +87,7 @@ body {
 }
 
 body {
-  font-family: var(--sans);
+  font-family: 'Barlow', sans-serif;
   background: var(--white);
   color: var(--black);
   overflow-x: hidden;
@@ -100,7 +100,11 @@ a{
   text-decoration: none;
 }
 
-/* ─── SCROLLBAR ─── */
+::selection {
+  background: var(--gold);
+  color: white;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -118,115 +122,40 @@ a{
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* ─── ANIMATIONS ─── */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 @keyframes rotateSlow {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.7;
-    transform: scale(0.97);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.97); }
 }
 
-.fade-up {
-  animation: fadeUp 0.7s ease both;
+.section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
 }
 
-.delay-1 {
-  animation-delay: 0.1s;
-}
-
-.delay-2 {
-  animation-delay: 0.2s;
-}
-
-.delay-3 {
-  animation-delay: 0.3s;
-}
-
-.delay-4 {
-  animation-delay: 0.4s;
-}
-
-.delay-5 {
-  animation-delay: 0.5s;
-}
-
-/* FONTS */
-/* Register the Bold/Black font for the top line */
-@font-face {
-  font-family: 'Gotham-Bold';
-  src: url('../fonts/Gotham/Gotham-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-/* Register the Medium font for the bottom line */
-@font-face {
-  font-family: 'Gotham-Medium';
-  src: url('../fonts/Gotham/Gotham-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-
-/* ─── SECTION COMMON ─── */
-section {
-  padding: 100px 0;
-  border-bottom: 2px solid var(--divider);
-}
-
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 60px;
+.section.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-label {
@@ -249,7 +178,7 @@ section {
 }
 
 .section-title {
-  font-family: var(--serif);
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(36px, 4vw, 54px);
   font-weight: 700;
   line-height: 1.1;
@@ -272,17 +201,33 @@ section {
   text-align: center;
 }
 
-/* BTN's */
+section {
+  padding: 100px 0;
+  border-bottom: 2px solid var(--divider);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .section-title { font-size: clamp(28px, 6vw, 36px); }
+  .section-sub { font-size: 14px; max-width: 100%; }
+}
+
 /* ─────────────────────────────────────────────
    POV ANIMATED BUTTONS
-───────────────────────────────────────────── */
+   ───────────────────────────────────────────── */
 .pov-btn {
   position: relative;
   width: fit-content;
   height: 58px;
   border: 1.5px solid transparent;
   cursor: pointer;
-  font-family: var(--sans);
+  font-family: 'Barlow', sans-serif;
   font-size: .72rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -294,7 +239,7 @@ section {
   outline: none;
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
-  transition: all 0.4s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
 }
 .pov-btn:hover {
@@ -305,7 +250,6 @@ section {
   transform: scale(0.98);
 }
 
-/* inner layout — icon + label sit together, centered as a unit */
 .pov-btn .btn-inner {
   display: flex;
   align-items: center;
@@ -315,9 +259,6 @@ section {
   transition: color 0.4s ease;
 }
 
-
-
-/* icon wrapper */
 .pov-btn .icon {
   width: 0;
   overflow: hidden;
@@ -325,9 +266,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    width .4s cubic-bezier(.77, 0, .18, 1),
-    opacity .3s .05s;
+  transition: width .4s cubic-bezier(.77, 0, .18, 1), opacity .3s .05s;
   flex-shrink: 0;
 }
 
@@ -343,14 +282,12 @@ section {
   flex-shrink: 0;
 }
 
-/* label */
 .pov-btn .label {
   position: relative;
   white-space: nowrap;
   transition: color 0.4s ease;
 }
 
-/* ─── BTN 1 — BOOK A SHOOT (Gold) ─── */
 .btn-book {
   background: var(--gold);
   color: #FFFFFF;
@@ -382,7 +319,6 @@ section {
   stroke: var(--white);
 }
 
-/* flash on click */
 .btn-book::after {
   content: '';
   position: absolute;
@@ -398,13 +334,8 @@ section {
 }
 
 @keyframes flash {
-  0% {
-    opacity: .5
-  }
-
-  100% {
-    opacity: 0
-  }
+  0% { opacity: .5 }
+  100% { opacity: 0 }
 }
 
 .btn-book .cam-lens {
@@ -426,7 +357,6 @@ section {
   transform: scale(1);
 }
 
-/* ─── BTN 2 — VIEW PRICING (Black) ─── */
 .btn-pricing {
   background: var(--black);
   color: var(--white);
@@ -469,7 +399,6 @@ section {
   transform: rotate(0deg) translateY(0);
 }
 
-/* ─── BTN 3 — OUR SERVICES (Outline Black) ─── */
 .btn-services {
   background: transparent;
   color: var(--black);
@@ -510,37 +439,14 @@ section {
   transform: scale(1);
 }
 
-.btn-services:hover .star-ray:nth-child(1) {
-  transition-delay: .05s;
-}
-
-.btn-services:hover .star-ray:nth-child(2) {
-  transition-delay: .10s;
-}
-
-.btn-services:hover .star-ray:nth-child(3) {
-  transition-delay: .15s;
-}
-
-.btn-services:hover .star-ray:nth-child(4) {
-  transition-delay: .20s;
-}
-
-.btn-services:hover .star-ray:nth-child(5) {
-  transition-delay: .25s;
-}
-
-.btn-services:hover .star-ray:nth-child(6) {
-  transition-delay: .30s;
-}
-
-.btn-services:hover .star-ray:nth-child(7) {
-  transition-delay: .35s;
-}
-
-.btn-services:hover .star-ray:nth-child(8) {
-  transition-delay: .40s;
-}
+.btn-services:hover .star-ray:nth-child(1) { transition-delay: .05s; }
+.btn-services:hover .star-ray:nth-child(2) { transition-delay: .10s; }
+.btn-services:hover .star-ray:nth-child(3) { transition-delay: .15s; }
+.btn-services:hover .star-ray:nth-child(4) { transition-delay: .20s; }
+.btn-services:hover .star-ray:nth-child(5) { transition-delay: .25s; }
+.btn-services:hover .star-ray:nth-child(6) { transition-delay: .30s; }
+.btn-services:hover .star-ray:nth-child(7) { transition-delay: .35s; }
+.btn-services:hover .star-ray:nth-child(8) { transition-delay: .40s; }
 
 .btn-services .star-core {
   fill: currentColor;
@@ -553,12 +459,6 @@ section {
 
 .btn-services:hover .icon svg circle {
   stroke: var(--white);
-}
-
-/* ─── BTN 4 — REAL ESTATE PACKAGE (dark) ─── */
-.btn-re .tab-btn.active {
-  background: var(--black);
-  color: var(--white);
 }
 
 .btn-realestate {
@@ -614,7 +514,6 @@ section {
   transform: scaleY(1);
 }
 
-/* ─── BTN 5 — CONSTRUCTION PACKAGE (gold) ─── */
 .btn-construction {
   background: var(--gold);
   color: var(--white);
@@ -662,21 +561,10 @@ section {
   opacity: 1;
 }
 
-.btn-construction:hover .floor:nth-child(1) {
-  transition-delay: .00s;
-}
-
-.btn-construction:hover .floor:nth-child(2) {
-  transition-delay: .07s;
-}
-
-.btn-construction:hover .floor:nth-child(3) {
-  transition-delay: .14s;
-}
-
-.btn-construction:hover .floor:nth-child(4) {
-  transition-delay: .21s;
-}
+.btn-construction:hover .floor:nth-child(1) { transition-delay: .00s; }
+.btn-construction:hover .floor:nth-child(2) { transition-delay: .07s; }
+.btn-construction:hover .floor:nth-child(3) { transition-delay: .14s; }
+.btn-construction:hover .floor:nth-child(4) { transition-delay: .21s; }
 
 .btn-construction .crane-arm {
   transform: translateX(-4px);
@@ -693,92 +581,67 @@ section {
   box-shadow: 0 0 0 2px var(--mist), 0 0 0 4px var(--gold);
 }
 
+.scroll-arrow {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-arrow .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(212, 155, 84, 0.45);
+  animation: spin 8s linear infinite;
+}
+
+.scroll-arrow .circle {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 155, 84, 0.3);
+  background: rgba(212, 155, 84, 0.06);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.scroll-arrow:hover .circle {
+  background: rgba(212, 155, 84, 0.18);
+  border-color: rgba(212, 155, 84, 0.7);
+}
+
+.scroll-arrow .arrow-icon {
+  position: relative;
+  z-index: 2;
+  color: #D49B54;
+  animation: bounce 1.6s ease-in-out infinite;
+}
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 20px;
-  }
-
-  .section-title {
-    font-size: clamp(28px, 6vw, 36px);
-  }
-
-  .section-sub {
-    font-size: 14px;
-    max-width: 100%;
-  }
-
+  .scroll-arrow { display: none; }
 }
-/* Scroll arrow */
-/* ─── SCROLL ARROW ─── */
-  .scroll-arrow {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 52px;
-    height: 52px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Desktop only */
-  }
 
-  /* Rotating dashed circle */
-  .scroll-arrow .ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1.5px dashed rgba(212, 155, 84, 0.45);
-    animation: spin 8s linear infinite;
-  }
+@keyframes bounce {
+  0%, 100% { transform: translateY(-3px); opacity: 0.6; }
+  50%       { transform: translateY(3px);  opacity: 1;   }
+}
 
-  /* Solid inner circle */
-  .scroll-arrow .circle {
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    border: 1px solid rgba(212, 155, 84, 0.3);
-    background: rgba(212, 155, 84, 0.06);
-    transition: background 0.3s, border-color 0.3s;
-  }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 
-  .scroll-arrow:hover .circle {
-    background: rgba(212, 155, 84, 0.18);
-    border-color: rgba(212, 155, 84, 0.7);
-  }
+.scroll-arrow:hover .arrow-icon {
+  animation: bounce 0.9s ease-in-out infinite;
+  color: #e8b06a;
+}
 
-  /* Arrow SVG bouncing */
-  .scroll-arrow .arrow-icon {
-    position: relative;
-    z-index: 2;
-    color: #D49B54;
-    animation: bounce 1.6s ease-in-out infinite;
-  }
-
-  /* Hide on mobile */
-  @media (max-width: 768px) {
-    .scroll-arrow { display: none; }
-  }
-
-  /* ─── KEYFRAMES ─── */
-  @keyframes bounce {
-    0%, 100% { transform: translateY(-3px); opacity: 0.6; }
-    50%       { transform: translateY(3px);  opacity: 1;   }
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  /* pulse glow on hover */
-  .scroll-arrow:hover .arrow-icon {
-    animation: bounce 0.9s ease-in-out infinite;
-    color: #e8b06a;
-  }
-/* --- SCROLL TO TOP --- */
 .scroll-top-btn {
   position: fixed;
   bottom: 30px;
@@ -829,7 +692,6 @@ section {
   }
 }
 
-/* ─── BOOKING MODAL ─── */
 .booking-modal-overlay {
   position: fixed;
   inset: 0;
@@ -894,10 +756,12 @@ section {
 .booking-modal-header {
   text-align: center;
   margin-bottom: 32px;
+  padding-top: 6px;
+  padding-bottom: 22px;
 }
 
 .booking-modal-header h3 {
-  font-family: var(--serif);
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(24px, 3.5vw, 32px);
   font-weight: 700;
   color: var(--black);
@@ -935,13 +799,8 @@ section {
   box-shadow: var(--shadow-md);
 }
 
-.booking-option-re:hover {
-  border-color: var(--gold);
-}
-
-.booking-option-cons:hover {
-  border-color: var(--gold);
-}
+.booking-option-re:hover { border-color: var(--gold); }
+.booking-option-cons:hover { border-color: var(--gold); }
 
 .booking-option-icon {
   width: 56px;
@@ -958,12 +817,10 @@ section {
   transition: color 0.3s;
 }
 
-.booking-option:hover .booking-option-icon svg {
-  color: var(--gold);
-}
+.booking-option:hover .booking-option-icon svg { color: var(--gold); }
 
 .booking-option h4 {
-  font-family: var(--serif);
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--black);
@@ -987,11 +844,8 @@ section {
   transition: color 0.2s;
 }
 
-.booking-option-re:hover .booking-option-cta {
-  color: var(--gold-light);
-}
+.booking-option-re:hover .booking-option-cta { color: var(--gold-light); }
 
-/* Construction option actions */
 .booking-cons-actions {
   display: flex;
   gap: 10px;
@@ -1016,7 +870,7 @@ section {
   transition: all 0.3s;
   text-decoration: none;
   white-space: nowrap;
-  font-family: var(--sans);
+  font-family: 'Barlow', sans-serif;
 }
 
 .booking-cons-form {
@@ -1025,9 +879,7 @@ section {
   border: none;
 }
 
-.booking-cons-form:hover {
-  background: var(--gold);
-}
+.booking-cons-form:hover { background: var(--gold); }
 
 .booking-cons-call {
   background: transparent;
@@ -1040,11 +892,8 @@ section {
   color: #fff;
 }
 
-.booking-cons-btn svg {
-  flex-shrink: 0;
-}
+.booking-cons-btn svg { flex-shrink: 0; }
 
-/* Modal responsive */
 @media (max-width: 600px) {
   .booking-modal {
     padding: 12px 12px 12px;
@@ -1053,66 +902,24 @@ section {
     overflow-y: visible;
     box-shadow: 0 12px 36px rgba(0,0,0,0.18);
   }
-
   .booking-modal-options {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-
-  .booking-modal-header h3 {
-    font-size: 18px;
-  }
-  .booking-cons-actions {
-    flex-direction: column;
-  }
-
-  .booking-option {
-    padding: 10px 10px;
-  }
-
-  .booking-option h4 {
-    font-size: 18px;
-  }
-
-  .booking-option-icon {
-    width: 48px;
-    height: 48px;
-  }
-
+  .booking-modal-header h3 { font-size: 18px; }
+  .booking-cons-actions { flex-direction: column; }
+  .booking-option { padding: 10px 10px; }
+  .booking-option h4 { font-size: 18px; }
+  .booking-option-icon { width: 48px; height: 48px; }
   .booking-option-icon svg { width: 28px; height: 28px; }
-
-  .booking-modal-close {
-    top: 8px;
-    right: 8px;
-    padding: 6px;
-  }
-
+  .booking-modal-close { top: 8px; right: 8px; padding: 6px; }
   .booking-modal-header p { font-size: 12px; }
-
   .booking-option h4 { font-size: 15px; }
-
   .booking-option p { font-size: 12px; line-height:1.2; }
-
   .booking-option-cta { font-size: 11px; }
 }
 
-.booking-modal-header {
-  padding-top: 6px;
-  padding-bottom: 22px;
-}
-
-/* Modal-specific scrollbar (subtle) */
-.booking-modal::-webkit-scrollbar {
-  width: 6px;
-}
-.booking-modal::-webkit-scrollbar-track {
-  background: transparent;
-}
-.booking-modal::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.12);
-  border-radius: 6px;
-}
-.booking-modal {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.12) transparent;
-}
+.booking-modal::-webkit-scrollbar { width: 6px; }
+.booking-modal::-webkit-scrollbar-track { background: transparent; }
+.booking-modal::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 6px; }
+.booking-modal { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.12) transparent; }
