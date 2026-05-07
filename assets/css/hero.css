@@ -22,9 +22,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(200,134,26,0.10) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 20%, rgba(200,134,26,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(200,134,26,0.07) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(200,134,26,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(200,134,26,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(200,134,26,0.06) 0%, transparent 50%);
   z-index: 1;
 }
 
@@ -33,15 +33,15 @@
   inset: 0;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 860px;
+  max-width: 900px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -53,8 +53,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 20px;
-  border: 1px solid rgba(200,134,26,0.25);
+  padding: 8px 18px;
+  border: 1px solid rgba(200,134,26,0.3);
   border-radius: 100px;
   font-size: 11px;
   font-weight: 600;
@@ -63,22 +63,26 @@
   color: var(--gold);
   background: rgba(200,134,26,0.08);
   backdrop-filter: blur(8px);
-  margin-bottom: 44px;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease-out-expo) 0.2s forwards;
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s var(--ease-out-expo) both;
 }
 
-.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s ease infinite; }
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite;
+}
 
 .hero h1 {
-  font-family: var(--serif);
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(44px, 7vw, 82px);
   font-weight: 900;
-  line-height: 1.06;
+  line-height: 1.08;
   margin-bottom: 28px;
   color: #FFFFFF;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease-out-expo) 0.35s forwards;
+  animation: fadeUp 0.8s var(--ease-out-expo) 0.15s both;
 }
 
 .hero h1 em {
@@ -89,13 +93,12 @@
 
 .hero-sub {
   font-size: 18px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.65);
   max-width: 580px;
-  margin: 0 auto 48px;
+  margin: 0 auto 44px;
   font-weight: 300;
   line-height: 1.7;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease-out-expo) 0.5s forwards;
+  animation: fadeUp 0.8s var(--ease-out-expo) 0.3s both;
 }
 
 .hero-actions {
@@ -103,26 +106,32 @@
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease-out-expo) 0.65s forwards;
+  animation: fadeUp 0.8s var(--ease-out-expo) 0.45s both;
 }
 
 @media (max-width: 1024px) {
+  .hero-content { max-width: 700px; }
   .hero h1 { font-size: clamp(36px, 6vw, 56px); }
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: auto; padding: 120px 20px 80px; }
-  .hero h1 { line-height: 1.12; font-size: clamp(32px, 8vw, 44px); }
-  .hero-sub { font-size: 16px; margin-bottom: 36px; }
-  .hero-actions { flex-direction: column; width: 100%; max-width: 320px; align-items: center; }
+  .hero {
+    min-height: auto;
+    padding: 120px 20px 80px;
+  }
+  .hero h1 { line-height: 1.15; }
+  .hero-sub { font-size: 16px; }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    align-items: center;
+  }
   .hero-actions a { width: 100%; text-align: center; }
 }
 
 @media (max-width: 480px) {
   .hero { padding: 100px 16px 60px; }
-  .hero h1 { font-size: clamp(26px, 10vw, 36px); }
-  .hero h1 em { display: inline; }
-  .hero-sub { font-size: 15px; }
-  .hero-badge { font-size: 9px; padding: 6px 14px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 40px); }
+  .hero-sub { font-size: 15px; margin-bottom: 30px; }
 }
