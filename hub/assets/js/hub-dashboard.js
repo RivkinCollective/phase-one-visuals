@@ -1,6 +1,6 @@
 (function () {
 
-  const PASSWORD_HASH = "8cbd7d06e6e9a1a0e1ccfa9e5e5b5d1e9b3c3e2f1a0b9c8d7e6f5a4b3c2d1e0f";
+  const PASSWORD_HASH = "773cb99a6510c3f991f053cb887a9ab26f3c9618061d32ebfac268a43143aa89";
   const SESSION_KEY = "p1hub_authenticated";
 
   const staticData = {
@@ -198,31 +198,33 @@
     container.innerHTML = html;
   }
 
+  var pendingFiles = [];
+
   function handleFileSelect(files) {
     var preview = document.getElementById("uploadPreview");
     preview.innerHTML = "";
+    pendingFiles = [];
     if (!files || files.length === 0) {
       preview.classList.remove("has-files");
       return;
     }
     preview.classList.add("has-files");
-    Array.from(files).forEach(function (file) {
+    Array.from(files).forEach(function (file, idx) {
       if (!file.type.startsWith("image/") && !file.type.startsWith("video/")) return;
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        var card = document.createElement("div");
-        card.className = "upload-thumb";
-        card.innerHTML = '<img src="' + e.target.result + '" alt="' + file.name + '"><span class="upload-thumb-name">' + file.name + '</span>';
-        preview.appendChild(card);
-      };
+      pendingFiles.push(file);
+      var card = document.createElement("div");
+      card.className = "upload-thumb";
+      card.setAttribute("data-file-index", pendingFiles.length - 1);
       if (file.type.startsWith("image/")) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          card.innerHTML = '<img src="' + e.target.result + '" alt="' + file.name + '"><span class="upload-thumb-name">' + file.name + '</span><div class="upload-progress"><div class="upload-progress-bar"></div></div><span class="upload-status"></span>';
+        };
         reader.readAsDataURL(file);
       } else {
-        var card = document.createElement("div");
-        card.className = "upload-thumb upload-thumb--video";
-        card.innerHTML = '<div class="upload-video-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><span class="upload-thumb-name">' + file.name + '</span>';
-        preview.appendChild(card);
+        card.innerHTML = '<div class="upload-video-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><span class="upload-thumb-name">' + file.name + '</span><div class="upload-progress"><div class="upload-progress-bar"></div></div><span class="upload-status"></span>';
       }
+      preview.appendChild(card);
     });
   }
 
@@ -302,24 +304,254 @@
     });
 
     document.getElementById("btnUpload").addEventListener("click", function () {
-      var files = fileInput.files;
-      if (!files || files.length === 0) return;
+      if (pendingFiles.length === 0) return;
 
-      var preview = document.getElementById("uploadPreview");
-      var count = preview.querySelectorAll(".upload-thumb").length;
       var btn = document.getElementById("btnUpload");
       var original = btn.textContent;
       btn.textContent = "Uploading...";
       btn.disabled = true;
 
-      setTimeout(function () {
+      var projectId = (document.getElementById("projectNameInput") ? document.getElementById("projectNameInput").value.trim() : "") || "default";
+      var timestamp = Date.now();
+      var uploadPromises = [];
+
+      pendingFiles.forEach(function (file, index) {
+        var path = "projects/" + projectId + "/" + timestamp + "_" + file.name;
+        var uploadTask = storage.ref(path).put(file);
+
+        var thumb = document.querySelector('.upload-thumb[data-file-index="' + index + '"]');
+        var progressBar = thumb ? thumb.querySelector(".upload-progress-bar") : null;
+        var statusEl = thumb ? thumb.querySelector(".upload-status") : null;
+
+        var promise = new Promise(function (resolve, reject) {
+          uploadTask.on("state_changed",
+            function (snapshot) {
+              var pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+              if (progressBar) progressBar.style.width = pct + "%";
+            },
+            function (error) {
+              if (statusEl) { statusEl.textContent = "Failed"; statusEl.className = "upload-status upload-status--error"; }
+              reject(error);
+            },
+            function () {
+              uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+                if (progressBar) progressBar.style.width = "100%";
+                if (statusEl) { statusEl.textContent = "Done"; statusEl.className = "upload-status upload-status--done"; }
+                db.collection("hub_media").add({
+                  fileName: file.name,
+                  url: url,
+                  contentType: file.type,
+                  size: file.size,
+                  projectId: projectId,
+                  uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(function () { resolve(url); }).catch(function () { resolve(url); });
+              }).catch(function (err) { reject(err); });
+            }
+          );
+        });
+
+        uploadPromises.push(promise);
+      });
+
+      Promise.allSettled(uploadPromises).then(function (results) {
+        var succeeded = results.filter(function (r) { return r.status === "fulfilled"; }).length;
+        var failed = results.filter(function (r) { return r.status === "rejected"; }).length;
         btn.textContent = original;
         btn.disabled = false;
-        preview.innerHTML = '<div class="upload-success">' + count + ' file(s) staged. Upload will be enabled in Phase 3.</div>';
-        preview.classList.add("has-files");
+        var msg = succeeded + " file(s) uploaded successfully";
+        if (failed > 0) msg += ", " + failed + " failed";
+        var summary = document.createElement("div");
+        summary.className = "upload-success";
+        summary.textContent = msg;
+        document.getElementById("uploadPreview").appendChild(summary);
+        pendingFiles = [];
         fileInput.value = "";
-      }, 1500);
+      });
     });
+
+    // ─── PROJECT MANAGEMENT ───
+    var projectModal = document.getElementById("projectModal");
+    var editingProjectId = null;
+
+    function openProjectModal(project) {
+      editingProjectId = project ? project.id : null;
+      document.getElementById("projectModalTitle").textContent = project ? "Edit Project" : "New Project";
+      document.getElementById("btnSaveProject").textContent = project ? "Save Changes" : "Create Project";
+      document.getElementById("inputProjectName").value = project ? project.name || "" : "";
+      document.getElementById("inputClientName").value = project ? project.clientName || "" : "";
+      document.getElementById("inputClientEmail").value = project ? project.clientEmail || "" : "";
+      document.getElementById("inputProjectPrice").value = project ? project.price || 0 : 0;
+      document.getElementById("inputProjectExpiry").value = project ? project.expiryDays || 180 : 180;
+      document.getElementById("inputStripeLink").value = project ? project.stripeLink || "" : "";
+      projectModal.style.display = "flex";
+    }
+
+    function closeProjectModal() {
+      projectModal.style.display = "none";
+      editingProjectId = null;
+    }
+
+    function loadProjects() {
+      db.collection("hub_projects").orderBy("createdAt", "desc").get().then(function (snapshot) {
+        var list = document.getElementById("projectsList");
+        var empty = document.getElementById("projectsEmpty");
+
+        if (snapshot.empty) {
+          list.innerHTML = "";
+          list.style.display = "none";
+          empty.style.display = "block";
+          return;
+        }
+
+        empty.style.display = "none";
+        list.style.display = "grid";
+        list.innerHTML = "";
+
+        snapshot.forEach(function (doc) {
+          var p = doc.data();
+          p.id = doc.id;
+          var expiresAt = p.expiresAt ? (p.expiresAt.toDate ? p.expiresAt.toDate() : new Date(p.expiresAt)) : null;
+          var expired = expiresAt && new Date() > expiresAt;
+          var status = expired ? "expired" : (p.status || "active");
+          var statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+
+          var card = document.createElement("div");
+          card.className = "project-row";
+          card.innerHTML =
+            '<div class="project-row-header">' +
+              '<span class="project-row-name">' + (p.name || "Untitled") + '</span>' +
+              '<span class="project-row-status ' + status + '">' + statusLabel + '</span>' +
+            '</div>' +
+            '<div class="project-row-meta">' +
+              '<div class="project-meta-item"><strong>Client</strong>' + (p.clientName || "—") + '</div>' +
+              '<div class="project-meta-item"><strong>Email</strong>' + (p.clientEmail || "—") + '</div>' +
+              '<div class="project-meta-item"><strong>Price</strong>' + (p.price ? "$" + p.price.toFixed(2) : "Free") + '</div>' +
+              '<div class="project-meta-item"><strong>Photos</strong>' + (p.photos ? p.photos.length : 0) + '</div>' +
+            '</div>' +
+            '<div class="project-row-actions">' +
+              '<button class="project-action-btn edit-project" data-id="' + p.id + '">Edit</button>' +
+              '<button class="project-action-btn danger delete-project" data-id="' + p.id + '">Delete</button>' +
+            '</div>';
+
+          list.appendChild(card);
+        });
+
+        document.querySelectorAll(".edit-project").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var id = this.dataset.id;
+            db.collection("hub_projects").doc(id).get().then(function (d) {
+              if (d.exists) openProjectModal({ id: id, ...d.data() });
+            });
+          });
+        });
+
+        document.querySelectorAll(".delete-project").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var id = this.dataset.id;
+            if (confirm("Delete this project? This cannot be undone.")) {
+              db.collection("hub_projects").doc(id).delete().then(function () {
+                loadProjects();
+              });
+            }
+          });
+        });
+      }).catch(function () {
+        document.getElementById("projectsEmpty").style.display = "block";
+        document.getElementById("projectsList").style.display = "none";
+      });
+    }
+
+    document.getElementById("btnNewProject").addEventListener("click", function () { openProjectModal(null); });
+    document.getElementById("btnNewProjectEmpty").addEventListener("click", function () { openProjectModal(null); });
+    document.getElementById("btnCloseProjectModal").addEventListener("click", closeProjectModal);
+    document.getElementById("btnCancelProject").addEventListener("click", closeProjectModal);
+
+    document.getElementById("btnSaveProject").addEventListener("click", function () {
+      var btn = document.getElementById("btnSaveProject");
+      btn.disabled = true;
+      btn.textContent = "Saving...";
+
+      var name = document.getElementById("inputProjectName").value.trim();
+      var clientName = document.getElementById("inputClientName").value.trim();
+      var clientEmail = document.getElementById("inputClientEmail").value.trim();
+      var price = parseFloat(document.getElementById("inputProjectPrice").value) || 0;
+      var expiryDays = parseInt(document.getElementById("inputProjectExpiry").value) || 0;
+      var stripeLink = document.getElementById("inputStripeLink").value.trim();
+
+      if (!name) { alert("Project name is required"); btn.disabled = false; btn.textContent = editingProjectId ? "Save Changes" : "Create Project"; return; }
+
+      var projectData = {
+        name: name,
+        clientName: clientName,
+        clientEmail: clientEmail,
+        price: price,
+        expiryDays: expiryDays,
+        stripeLink: stripeLink,
+        status: "active",
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      if (expiryDays > 0) {
+        var exp = new Date();
+        exp.setDate(exp.getDate() + expiryDays);
+        projectData.expiresAt = firebase.firestore.Timestamp.fromDate(exp);
+      }
+
+      var savePromise;
+      if (editingProjectId) {
+        savePromise = db.collection("hub_projects").doc(editingProjectId).update(projectData);
+      } else {
+        projectData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+        projectData.photos = [];
+        savePromise = db.collection("hub_projects").add(projectData);
+      }
+
+      savePromise.then(function (ref) {
+        var projectId = editingProjectId || (ref.id || "");
+
+        if (clientEmail) {
+          db.collection("hub_clients").where("email", "==", clientEmail).limit(1).get().then(function (snap) {
+            if (snap.empty) {
+              db.collection("hub_clients").add({
+                email: clientEmail,
+                name: clientName,
+                projectIds: [projectId],
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+              });
+            } else {
+              var clientDoc = snap.docs[0];
+              var ids = clientDoc.data().projectIds || [];
+              if (ids.indexOf(projectId) === -1) {
+                ids.push(projectId);
+                clientDoc.ref.update({ projectIds: ids, name: clientName || clientDoc.data().name });
+              }
+            }
+          }).catch(function () {});
+        }
+
+        if (stripeLink) HubPayment.setStripeLink(stripeLink);
+
+        closeProjectModal();
+        loadProjects();
+        btn.disabled = false;
+        btn.textContent = editingProjectId ? "Save Changes" : "Create Project";
+      }).catch(function (err) {
+        alert("Error saving project: " + err.message);
+        btn.disabled = false;
+        btn.textContent = editingProjectId ? "Save Changes" : "Create Project";
+      });
+    });
+
+    projectModal.addEventListener("click", function (e) {
+      if (e.target === projectModal) closeProjectModal();
+    });
+
+    // Load projects when tab is switched to
+    var origSwitchTab = switchTab;
+    switchTab = function (tabId) {
+      origSwitchTab(tabId);
+      if (tabId === "projects") loadProjects();
+    };
 
   });
 

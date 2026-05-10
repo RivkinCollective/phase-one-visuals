@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Your Photos — Phase One Visuals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/hub-base.css">
+  <link rel="stylesheet" href="assets/css/hub-gallery.css">
+</head>
+<body class="gallery-page">
+
+  <!-- LOGGED OUT: Email entry -->
+  <div class="gallery-gate" id="galleryGate">
+    <div class="gallery-gate-card">
+      <div class="pass-gate-emblem">
+        <svg viewBox="0 0 48 48" fill="none">
+          <polygon points="24,4 46,40 2,40" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="24" cy="26" r="4" fill="currentColor" opacity="0.3"/>
+          <circle cx="24" cy="26" r="2" fill="#0d0d0d"/>
+        </svg>
+      </div>
+      <h2 class="pass-gate-title">Your Photos</h2>
+      <p class="pass-gate-subtitle">Enter your email to access your gallery</p>
+      <form id="emailForm" autocomplete="off">
+        <div class="pass-gate-group">
+          <input type="email" id="emailInput" class="pass-gate-input" placeholder="your@email.com" required autofocus>
+        </div>
+        <button type="submit" id="emailSubmit" class="pass-gate-btn">Send Magic Link</button>
+      </form>
+      <p class="pass-gate-error" id="emailError"></p>
+      <p class="gallery-gate-sent" id="emailSent">Magic link sent! Check your inbox and click the link to access your photos.</p>
+    </div>
+  </div>
+
+  <!-- LOGGED IN: Gallery -->
+  <div class="gallery-app" id="galleryApp">
+    <header class="gallery-topbar">
+      <div class="gallery-topbar-left">
+        <h1 class="gallery-title">Your Photos</h1>
+      </div>
+      <div class="gallery-topbar-right">
+        <span class="gallery-client-email" id="clientEmail"></span>
+        <button class="gallery-logout" id="btnGalleryLogout">Sign Out</button>
+      </div>
+    </header>
+
+    <div class="gallery-main">
+      <!-- Project cards -->
+      <div class="gallery-projects" id="galleryProjects"></div>
+
+      <!-- Empty state -->
+      <div class="gallery-empty" id="galleryEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <h2>No projects found</h2>
+        <p>We couldn't find any projects linked to your email. Contact us if you believe this is an error.</p>
+      </div>
+
+      <!-- Photo grid -->
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <!-- Expiry badge -->
+    <div class="gallery-expiry" id="galleryExpiry" style="display:none"></div>
+
+    <!-- Payment gate overlay -->
+    <div class="payment-overlay" id="paymentOverlay" style="display:none">
+      <div class="payment-overlay-card">
+        <svg class="payment-overlay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h2>Unlock Your Photos</h2>
+        <p>This project requires payment to access the full gallery.</p>
+        <div class="payment-overlay-price" id="paymentPrice">$0.00</div>
+        <a class="payment-overlay-btn" id="paymentBtn" href="#" target="_blank" rel="noopener">Pay Now</a>
+        <p class="payment-overlay-hint">You'll be redirected back after payment</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop"></div>
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox-prev" aria-label="Previous">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox-next" aria-label="Next">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg">
+      <video src="" controls id="lightboxVideo" style="display:none"></video>
+    </div>
+    <div class="lightbox-footer">
+      <span class="lightbox-counter" id="lightboxCounter"></span>
+      <a class="lightbox-download" id="lightboxDownload" download target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full Resolution
+      </a>
+    </div>
+  </div>
+
+  <!-- Firebase Core SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+
+  <script src="assets/js/hub-config.js"></script>
+  <script src="assets/js/hub-payment.js"></script>
+  <script src="assets/js/hub-gallery.js"></script>
+</body>
+</html>

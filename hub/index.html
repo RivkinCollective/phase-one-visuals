@@ -96,10 +96,11 @@
         </div>
 
         <!-- Upload Tab -->
-        <div class="tab-panel" id="tab-upload">
+         <div class="tab-panel" id="tab-upload">
           <div class="upload-section">
             <h2 class="upload-title">Upload Media</h2>
             <p class="upload-subtitle">Drag and drop photos or videos to stage them for upload.</p>
+            <input type="text" id="projectNameInput" class="upload-project-name" placeholder="Project name (e.g. 123 Main St)" autocomplete="off">
             <div class="upload-dropzone" id="uploadDropZone">
               <svg class="upload-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -117,13 +118,46 @@
 
         <!-- Projects Tab -->
         <div class="tab-panel" id="tab-projects">
-          <div class="projects-empty">
+          <div class="projects-toolbar">
+            <h2 class="projects-section-title">Projects</h2>
+            <button class="projects-new-btn" id="btnNewProject">+ New Project</button>
+          </div>
+          <div class="projects-list" id="projectsList"></div>
+          <div class="projects-empty" id="projectsEmpty">
             <svg class="projects-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
             </svg>
             <h2>No projects yet</h2>
             <p>Create your first project to get started.</p>
-            <button class="projects-empty-btn">New Project</button>
+            <button class="projects-empty-btn" id="btnNewProjectEmpty">New Project</button>
+          </div>
+
+          <!-- New Project Modal -->
+          <div class="modal-overlay" id="projectModal" style="display:none">
+            <div class="modal-card">
+              <div class="modal-header">
+                <h3 id="projectModalTitle">New Project</h3>
+                <button class="modal-close" id="btnCloseProjectModal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <label class="modal-label">Project Name</label>
+                <input type="text" id="inputProjectName" class="form-input-dark" placeholder="e.g. 123 Main Street" autocomplete="off">
+                <label class="modal-label">Client Name</label>
+                <input type="text" id="inputClientName" class="form-input-dark" placeholder="e.g. Jane Smith" autocomplete="off">
+                <label class="modal-label">Client Email</label>
+                <input type="email" id="inputClientEmail" class="form-input-dark" placeholder="client@email.com" autocomplete="off">
+                <label class="modal-label">Price (USD, 0 for free access)</label>
+                <input type="number" id="inputProjectPrice" class="form-input-dark" placeholder="0.00" min="0" step="0.01" value="0">
+                <label class="modal-label">Expires In (days, 0 for no expiry)</label>
+                <input type="number" id="inputProjectExpiry" class="form-input-dark" placeholder="180" min="0" value="180">
+                <label class="modal-label">Stripe Payment Link (optional)</label>
+                <input type="url" id="inputStripeLink" class="form-input-dark" placeholder="https://buy.stripe.com/..." autocomplete="off">
+              </div>
+              <div class="modal-footer">
+                <button class="modal-btn-cancel" id="btnCancelProject">Cancel</button>
+                <button class="modal-btn-save" id="btnSaveProject">Create Project</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -138,6 +172,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script src="assets/js/hub-config.js"></script>
+  <script src="assets/js/hub-payment.js"></script>
   <script src="assets/js/hub-dashboard.js"></script>
 </body>
 </html>
