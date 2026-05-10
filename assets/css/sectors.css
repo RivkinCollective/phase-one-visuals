@@ -3,52 +3,6 @@
     padding: 0;
   }
 
-  .sector-mobile-ctas {
-    display: none;
-  }
-
-  @media (max-width: 992px) {
-    .sector-mobile-ctas {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px 16px;
-      background: var(--white);
-      border-bottom: 1px solid var(--divider);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .sector-mobile-ctas {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding: 16px;
-    }
-  }
-
-  .sector-mobile-nav {
-    display: none;
-    text-align: center;
-    padding: 16px 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--divider);
-  }
-
-  .sector-mobile-nav a {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gold);
-    text-decoration: none;
-    padding: 6px 18px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  .sector-mobile-nav span {
-    color: var(--divider);
-  }
-
   .sectors em {
     font-style: italic;
     color: var(--gold);
@@ -261,16 +215,8 @@
       padding: 0;
     }
 
-    .sector-mobile-nav {
-      display: block;
-    }
-
     .sector-split {
       grid-template-columns: 1fr;
-    }
-
-    .sector-panel .sector-cta {
-      display: none;
     }
 
     .sector-panel {

@@ -39,7 +39,7 @@
 .map-open-btn {
   display: block;
   width: fit-content;
-  margin: 28px auto 0;
+  margin: 32px auto 0;
   padding: 14px 24px;
   background: var(--black);
   color: var(--white);
@@ -52,6 +52,8 @@
   text-transform: uppercase;
   text-decoration: none;
   transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  grid-column: 1 / -1;
+  position: static;
 }
 
 .map-open-btn svg {
@@ -115,22 +117,23 @@
 }
 
 @keyframes goldWave {
-  0%, 20% {
+  0%, 100% {
     border-color: var(--divider);
     background: var(--mist);
     box-shadow: none;
     transform: translateY(0);
   }
-  5%, 15% {
-    border-color: var(--gold-border);
-    background: var(--gold-pale);
-    box-shadow: 0 4px 16px rgba(200, 134, 26, 0.12);
-    transform: translateY(-2px);
-  }
-  10% {
+  25% {
     border-color: var(--gold);
+    background: var(--gold-pale);
     box-shadow: 0 6px 20px rgba(200, 134, 26, 0.18);
     transform: translateY(-3px);
+  }
+  50% {
+    border-color: var(--divider);
+    background: var(--mist);
+    box-shadow: none;
+    transform: translateY(0);
   }
 }
 
