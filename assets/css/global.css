@@ -84,7 +84,8 @@
 html,
 body {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 60px;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -222,6 +223,7 @@ a{
 section {
   padding: 100px 0;
   border-bottom: 2px solid var(--divider);
+  scroll-snap-align: start;
 }
 
 .container {

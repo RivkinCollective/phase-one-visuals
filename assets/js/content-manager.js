@@ -191,9 +191,8 @@ function renderPricingCategory(catId, data) {
         html += `<div class="package-cards">`;
         data.cards.forEach((pkg, index) => {
             const featuredClass = pkg.featured ? 'featured' : '';
-            const wideClass = (data.cards.length === 3 && index === 2) ? 'style="grid-column: span 2;"' : '';
             html += `
-                <div class="pkg-card ${featuredClass}" ${wideClass} onclick="scrollToPackageColumn(this, ${index})">
+                <div class="pkg-card ${featuredClass}" onclick="scrollToPackageColumn(this, ${index})">
                     <div class="pkg-name">${pkg.name}</div>
                     <h4>${pkg.tagline}</h4>
                     <ul class="pkg-includes">

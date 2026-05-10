@@ -42,17 +42,17 @@
   font-weight: 600;
   letter-spacing: 0.8px;
   color: var(--slate);
-  background: var(--white);
-  border: 1.5px solid transparent;
+  background: transparent;
+  border: 1.5px solid var(--divider);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.3s;
   font-family: var(--sans);
 }
 
 .tab-btn.active {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--black);
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .tab-btn:not(.active):hover {

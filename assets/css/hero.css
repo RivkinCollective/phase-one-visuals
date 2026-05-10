@@ -1,6 +1,7 @@
   /* ─── HERO ─── */
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   padding-top: 60px;
   background: var(--mist);
   position: relative;
@@ -145,7 +146,7 @@
   /* Tablets */
   @media (max-width: 768px) {
     .hero {
-      min-height: auto;
+      min-height: 100svh;
       padding: 100px 20px 100px;
     }
 
@@ -190,6 +191,7 @@
   /* Mobile */
   @media (max-width: 480px) {
     .hero {
+      min-height: 100svh;
       padding: 80px 16px 90px;
     }
 
