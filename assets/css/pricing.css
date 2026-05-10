@@ -10,13 +10,30 @@
 
 .pricing-tabs {
   display: flex;
-  gap: 0;
-  border: 1px solid var(--divider);
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border: none;
   border-radius: 6px;
   width: fit-content;
   overflow: visible;
   margin: auto;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
+}
+
+.pricing-tabs-prompt {
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 400;
+  margin: 0;
+}
+
+.pricing-tabs div {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .tab-btn {
@@ -32,22 +49,24 @@
   font-family: var(--sans);
 }
 
+.tab-btn.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.tab-btn:not(.active):hover {
+  background: var(--gold-pale);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
 .tab-btn:first-child {
   border-radius: 6px 0 0 6px;
 }
 
 .tab-btn:last-child {
   border-radius: 0 6px 6px 0;
-}
-
-.tab-btn.active {
-  background: var(--black);
-  color: var(--white);
-}
-
-.tab-btn:not(.active):hover {
-  background: var(--mist);
-  border-color: var(--gold);
 }
 
 .tab-panel {
@@ -151,9 +170,17 @@
 /* Package cards */
 .package-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
   margin-bottom: 40px;
+  align-items: start;
+}
+
+/* Force 4 columns on wide screens when 4 cards */
+@media (min-width: 1025px) {
+  .package-cards:has(.pkg-card:nth-child(4)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .pkg-card {
@@ -403,9 +430,9 @@
   }
 
   /* Tabs full width */
-  .pricing-tabs {
-    width: 100%;
+  .pricing-tabs div {
     display: flex;
+    width: 100%;
   }
 
   .tab-btn {

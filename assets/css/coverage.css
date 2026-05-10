@@ -38,17 +38,25 @@
 
 .coverage-facts {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
   margin-top: 36px;
   margin-bottom: 36px;
+  width: 100%;
 }
 
 .fact-box {
-  border: 1px solid var(--divider);
-  border-radius: 6px;
+  border: 1.5px solid var(--divider);
+  border-radius: 8px;
   padding: 20px;
   background: var(--mist);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.fact-box:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(200, 134, 26, 0.1);
+  transform: translateY(-2px);
 }
 
 .fact-box strong {

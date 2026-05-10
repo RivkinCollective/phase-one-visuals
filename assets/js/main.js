@@ -209,12 +209,20 @@ const observer = new IntersectionObserver((entries) => {
 
 targets.forEach(el => observer.observe(el));
 
-// Pricing tab switcher
+// Pricing tab switcher with toggle
+let activeTab = null;
 function switchTab(tab, btn) {
+  if (activeTab === tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    activeTab = null;
+    return;
+  }
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + tab).classList.add('active');
   if (btn) btn.classList.add('active');
+  activeTab = tab;
   document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
