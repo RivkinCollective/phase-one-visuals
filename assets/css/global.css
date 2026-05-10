@@ -772,9 +772,17 @@ section {
     animation: bounce 1.6s ease-in-out infinite;
   }
 
-  /* Hide on mobile */
+  /* Hide on mobile — reduced size instead of hidden */
   @media (max-width: 768px) {
-    .scroll-arrow { display: none; }
+    .scroll-arrow {
+      bottom: 24px;
+      width: 40px;
+      height: 40px;
+    }
+    .scroll-arrow .arrow-icon {
+      width: 14px;
+      height: 14px;
+    }
   }
 
   /* ─── KEYFRAMES ─── */
