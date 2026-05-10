@@ -255,6 +255,17 @@ if (scrollTopBtn) {
   });
 }
 
-// document.getElementById('scrollBtn').addEventListener('click', () => {
-//     document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
-//   });
+// Scroll arrow — precise positioning that accounts for navbar
+(function () {
+  var scrollLink = document.querySelector('a[href="#process"]');
+  if (!scrollLink) return;
+  scrollLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    var target = document.getElementById('process');
+    var nav = document.getElementById('navbar');
+    if (!target) return;
+    var navHeight = nav ? nav.getBoundingClientRect().height : 60;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
+})();

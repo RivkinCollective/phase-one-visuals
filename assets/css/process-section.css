@@ -7,7 +7,7 @@
 
 @media (max-width: 680px) {
   .process-section {
-    padding: 60px 16px 40px;
+    padding: 40px 16px 30px;
   }
 }
 
@@ -168,7 +168,7 @@
     flex-direction: row;
     text-align: left;
     align-items: flex-start;
-    padding: 0 0 28px 0;
+    padding: 0 0 20px 0;
     position: relative;
   }
 
