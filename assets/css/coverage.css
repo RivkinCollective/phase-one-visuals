@@ -39,7 +39,7 @@
 .map-open-btn {
   display: block;
   width: fit-content;
-  margin: 16px auto 0;
+  margin: 10px auto 0;
   padding: 14px 24px;
   background: var(--black);
   color: var(--white);

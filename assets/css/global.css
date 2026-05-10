@@ -918,10 +918,10 @@ section {
   border-top: 3px solid var(--gold);
   border-radius: 16px;
   box-sizing: border-box;
-  max-width: 700px;
+  max-width: 640px;
   width: 100%;
-  padding: 48px 40px 44px;
-  max-height: calc(100vh - 64px);
+  padding: 32px 32px 28px;
+  max-height: calc(100vh - 48px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -936,8 +936,8 @@ section {
 
 .booking-modal-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -955,39 +955,39 @@ section {
 
 .booking-modal-header {
   text-align: center;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--divider);
 }
 
 .booking-modal-header h3 {
   font-family: var(--serif);
-  font-size: clamp(24px, 3.5vw, 32px);
+  font-size: clamp(22px, 3vw, 28px);
   font-weight: 700;
   color: var(--black);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .booking-modal-header p {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--slate);
 }
 
 .booking-modal-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 14px;
 }
 
 .booking-option {
   border: 2px solid var(--divider);
   border-radius: 12px;
-  padding: 32px 24px 28px;
+  padding: 24px 18px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   cursor: pointer;
   text-decoration: none;
@@ -1002,13 +1002,13 @@ section {
 }
 
 .booking-option-icon {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--gold-pale);
-  border-radius: 16px;
+  border-radius: 12px;
   border: 1px solid var(--gold-border);
   transition: background 0.3s, border-color 0.3s, transform 0.3s;
 }
@@ -1020,8 +1020,8 @@ section {
 }
 
 .booking-option-icon svg {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   color: var(--gold);
   transition: color 0.3s;
 }
@@ -1032,25 +1032,25 @@ section {
 
 .booking-option h4 {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--black);
 }
 
 .booking-option p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--slate);
-  line-height: 1.6;
-  max-width: 260px;
+  line-height: 1.5;
+  max-width: 240px;
 }
 
 .booking-option-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-top: auto;
-  padding: 12px 24px;
-  font-size: 11px;
+  padding: 10px 20px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1070,15 +1070,15 @@ section {
 
 .booking-option-cta::after {
   content: '→';
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* Construction option actions */
 .booking-cons-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 4px;
   width: 100%;
 }
 
@@ -1087,10 +1087,10 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 12px 12px;
+  gap: 5px;
+  padding: 10px 10px;
   border-radius: 8px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;

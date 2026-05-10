@@ -267,7 +267,7 @@ function scrollToPackageColumn(cardEl, index) {
     if (!wrapper) return;
 
     // 1. Scroll page vertically to the table
-    wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // 2. On mobile, scroll the table horizontally to the relevant column
     if (window.innerWidth <= 768) {
