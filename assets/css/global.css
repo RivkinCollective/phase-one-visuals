@@ -310,7 +310,7 @@ section {
 .pov-btn .btn-inner {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 10px;
   position: relative;
   z-index: 2;
   transition: color 0.4s ease;
@@ -556,15 +556,19 @@ section {
   stroke: var(--white);
 }
 
-/* Hero book button — icon always visible */
-.hero-actions .btn-book .icon {
+/* Book Now buttons — icon always visible */
+.btn-book .icon {
   width: 26px;
   opacity: 1;
 }
 
-.hero-actions .btn-book .icon svg {
+.btn-book .icon svg {
   width: 22px;
   height: 22px;
+}
+
+.btn-book .label {
+  transform: translateY(1px);
 }
 
 /* ─── BTN 4 — REAL ESTATE PACKAGE (dark) ─── */

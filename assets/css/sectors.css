@@ -33,14 +33,16 @@
   .sector-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 680px;
+    min-height: auto;
   }
 
   .sector-panel {
-    padding: 80px 60px;
+    padding: 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    text-align: center;
     position: relative;
     overflow: hidden;
     transition: flex 0.4s;
@@ -80,7 +82,9 @@
 
   .sector-features {
     list-style: none;
-    margin-bottom: 24px;
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 420px;
   }
 
   .sector-panel .pov-btn {
@@ -100,7 +104,7 @@
     line-height: 1.7;
     color: var(--slate);
     margin-bottom: 32px;
-    max-width: 380px;
+    max-width: 420px;
   }
 
   .sector-panel.construction p {
@@ -109,7 +113,9 @@
 
   .sector-features {
     list-style: none;
-    margin-bottom: 40px;
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 420px;
   }
 
   .sector-features li {

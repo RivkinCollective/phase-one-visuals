@@ -1,5 +1,6 @@
 .pricing-section {
   background: var(--white);
+  padding: 70px 0;
 }
 
 .pricing-section .section-title,
@@ -12,13 +13,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   border: none;
   border-radius: 6px;
   width: fit-content;
   overflow: visible;
-  margin: auto;
-  margin-bottom: 40px;
+  margin: 0 auto 48px;
 }
 
 .pricing-tabs-prompt {
@@ -33,23 +33,23 @@
 .pricing-tabs div {
   display: flex;
   gap: 0;
-  border: 1px solid var(--divider);
+  border: none;
   border-radius: 6px;
   overflow: hidden;
 }
 
 .tab-btn {
-  padding: 12px 28px;
+  padding: 14px 32px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.8px;
   color: var(--slate);
   background: transparent;
-  border: 1.5px solid var(--slate);
+  border: 2px solid var(--divider);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.3s;
   font-family: var(--sans);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  box-shadow: none;
 }
 
 .tab-btn.active {
@@ -194,6 +194,7 @@
   transition: box-shadow 0.2s, transform 0.2s;
   position: relative;
   cursor: pointer;
+  text-align: center;
 }
 
 .pkg-card:hover {
@@ -254,6 +255,7 @@
   display: flex;
   gap: 8px;
   align-items: flex-start;
+  justify-content: center;
   line-height: 1.4;
 }
 

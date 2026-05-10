@@ -42,6 +42,7 @@
   <link rel="stylesheet" href="assets/css/coverage.css">
   <link rel="stylesheet" href="assets/css/our-story.css">
   <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/cookie-consent.css">
   <script>
     (function () {
       const savedTheme = localStorage.getItem('theme');
@@ -310,30 +311,7 @@
           <li>Marketing Floor Plans</li>
           <li>Custom Property Website Included</li>
         </ul>
-        <a href="#pricing" class="pov-btn btn-realestate" style="width: 280px;"
-          onclick="document.getElementById('tab-residential').click()">
-          <div class="btn-inner">
-            <div class="icon">
-              <svg viewBox="0 0 22 22" fill="none">
-                <line x1="1" y1="21" x2="21" y2="21" stroke="rgba(255,255,255,.35)" stroke-width=".8" />
-                <g class="house-walls">
-                  <rect x="4" y="11" width="14" height="10" fill="none" stroke="white" stroke-width="1.2" />
-                  <rect class="house-door" x="8.5" y="16" width="5" height="5" fill="none" stroke="var(--gold)"
-                    stroke-width="1" />
-                  <rect x="5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
-                    stroke-width=".8" />
-                  <rect x="13.5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
-                    stroke-width=".8" />
-                </g>
-                <g class="house-roof">
-                  <polyline points="2,11 11,2 20,11" fill="none" stroke="var(--gold)" stroke-width="1.3"
-                    stroke-linejoin="round" />
-                </g>
-              </svg>
-            </div>
-            <span class="label">Real Estate Packages</span>
-          </div>
-        </a>
+
       </div>
       <div class="sector-panel construction" id="sector-cons">
         <div class="sector-tag" data-content-id="sector_cons_tag">Construction &amp; Development</div>
@@ -350,34 +328,7 @@
           <li>360° Interactive Capture</li>
           <li>Secure Online Project Gallery</li>
         </ul>
-        <a href="#pricing" class="pov-btn btn-construction" style="width: 280px;"
-          onclick="document.getElementById('tab-construction').click()">
-          <div class="btn-inner">
-            <div class="icon">
-              <svg viewBox="0 0 22 22" fill="none">
-                <g class="floor">
-                  <rect x="2" y="18" width="16" height="3" fill="none" stroke="white" stroke-width="1.1" />
-                </g>
-                <g class="floor">
-                  <rect x="3" y="13.5" width="14" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
-                </g>
-                <g class="floor">
-                  <rect x="4" y="9" width="12" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
-                </g>
-                <g class="floor">
-                  <rect x="5" y="5" width="10" height="4" fill="none" stroke="white" stroke-width="1.1" />
-                </g>
-                <g class="crane-arm">
-                  <line x1="18" y1="2" x2="18" y2="14" stroke="rgba(255,255,255,.7)" stroke-width="1" />
-                  <line x1="14" y1="2" x2="20" y2="2" stroke="rgba(255,255,255,.7)" stroke-width="1" />
-                  <line x1="18" y1="5" x2="15" y2="9" stroke="rgba(255,255,255,.4)" stroke-width=".8"
-                    stroke-dasharray="1.5 2" />
-                </g>
-              </svg>
-            </div>
-            <span class="label">Construction Packages</span>
-          </div>
-        </a>
+
       </div>
     </div>
   </section>
@@ -464,7 +415,12 @@
             </div>
           </div>
         </div>
-        <div class="coverage-map">
+        <div class="coverage-map-wrap">
+          <div class="coverage-map">
+            <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=40.3882926,-74.7615763&z=13&output=embed">
+            </iframe>
+          </div>
           <a href="https://maps.google.com/maps?q=40.3882926,-74.7615763&z=13" target="_blank" rel="noopener" class="map-open-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -473,9 +429,6 @@
             </svg>
             Open in Maps
           </a>
-          <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-            src="https://maps.google.com/maps?q=40.3882926,-74.7615763&z=13&output=embed">
-          </iframe>
         </div>
       </div>
     </div>
@@ -508,9 +461,9 @@
       <div class="footer-bottom">
         <p>© 2026 Phase One Visuals · All rights reserved · Hopewell, NJ</p>
         <div class="footer-legal">
-          <a href="https://docs.google.com/document/d/1eO--miKsOq7zfbsfv0j15ltr9Au4FbM1uxVdrEusEcI/edit?tab=t.0">Privacy Policy</a>
+          <a href="privacy.html">Privacy Policy</a>
           <span class="footer-legal-divider">|</span>
-          <a href="https://docs.google.com/document/d/1eO--miKsOq7zfbsfv0j15ltr9Au4FbM1uxVdrEusEcI/edit?tab=t.0">Terms of Service</a>
+          <a href="terms.html">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -722,6 +675,10 @@
           <label>Project Details</label>
           <textarea name="details" rows="3" placeholder="Tell us about your project scope, milestones, or any special requirements..."></textarea>
         </div>
+        <label class="cf-checkbox cf-consent-check" style="margin-top:8px">
+          <input type="checkbox" name="consent" required>
+          <span>I have read and agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>, and consent to the processing of my personal data as described therein.</span>
+        </label>
         <button type="submit" class="cf-submit">
           <span>Submit Inquiry</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -737,6 +694,7 @@
   <script src="assets/js/firebase-config.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/content-manager.js"></script>
+  <script src="assets/js/cookie-consent.js"></script>
 </body>
 
 </html>
