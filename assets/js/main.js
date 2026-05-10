@@ -326,4 +326,3 @@ if (scrollTopBtn) {
   }, 300);
   setTimeout(function () { clearInterval(check); }, 8000);
 })();
-})();
