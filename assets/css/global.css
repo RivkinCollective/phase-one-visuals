@@ -1196,11 +1196,6 @@ section {
   }
 }
 
-.booking-modal-header {
-  padding-top: 6px;
-  padding-bottom: 22px;
-}
-
 /* Modal-specific scrollbar (subtle) */
 .booking-modal::-webkit-scrollbar {
   width: 6px;
