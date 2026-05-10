@@ -37,10 +37,10 @@
 }
 
 .map-open-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
+  display: block;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 14px 24px;
   background: var(--black);
   color: var(--white);
   border: 1px solid var(--divider);
@@ -52,7 +52,11 @@
   text-transform: uppercase;
   text-decoration: none;
   transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-  margin-top: 24px;
+}
+
+.map-open-btn svg {
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 .map-open-btn:hover {
