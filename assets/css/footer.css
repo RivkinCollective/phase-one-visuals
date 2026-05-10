@@ -19,10 +19,11 @@ footer {
 /* ─── FOOTER GRID ─── */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: repeat(2, max-content);
+  gap: 80px;
   padding-bottom: 60px;
   border-bottom: 1px solid var(--divider);
+  justify-content: center;
 }
 
 
@@ -75,6 +76,18 @@ footer {
   color: var(--gold);
   text-decoration: none;
   font-size: 12px;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-legal-divider {
+  color: var(--gold);
+  font-size: 12px;
+  opacity: 0.6;
 }
 
 /* ─── DELIVERY STRIP ─── */

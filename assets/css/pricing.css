@@ -22,9 +22,11 @@
 }
 
 .pricing-tabs-prompt {
-  font-size: 13px;
-  color: var(--slate);
-  font-weight: 400;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -43,10 +45,11 @@
   letter-spacing: 0.8px;
   color: var(--slate);
   background: transparent;
-  border: 1.5px solid var(--divider);
+  border: 1.5px solid var(--slate);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.3s;
   font-family: var(--sans);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
 
 .tab-btn.active {
@@ -173,7 +176,7 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
   margin-bottom: 40px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* Force 4 columns on wide screens when 4 cards */
@@ -269,7 +272,7 @@
 /* Add-ons */
 .addons-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 12px;
   margin-top: 36px;
 }
@@ -303,12 +306,52 @@
   margin-left: 12px;
 }
 
+.addon-item {
+  position: relative;
+}
+
+.addon-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--black);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.addon-item:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Construction pricing */
 .construction-pkg-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin-bottom: 36px;
+}
+
+.addons-label {
+  justify-content: center;
+  margin-top: 48px;
+  margin-bottom: 20px;
+  font-size: 11px;
+}
+
+.addons-label::before {
+  display: none;
 }
 
 .cpkg-card {
@@ -425,10 +468,6 @@
     border-bottom: none;
   }
 
-  .addons-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
   /* Tabs full width */
   .pricing-tabs div {
     display: flex;
@@ -491,6 +530,14 @@
     font-size: 18px;
   }
 
+  .construction-pkg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #panel-construction .pricing-table-wrapper {
+    display: none;
+  }
+
   /* Fixed First Column for Mobile */
   .pricing-table th:first-child,
   .pricing-table td:first-child {
@@ -547,9 +594,6 @@
     font-size: 36px;
   }
 
-  .addons-grid {
-    grid-template-columns: 1fr;
-  }
 
 
 }

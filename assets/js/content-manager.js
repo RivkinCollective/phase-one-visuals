@@ -109,12 +109,12 @@ function fetchPricing() {
                 ]
             },
             addons: [
-                { name: "Vacant Home Refresh (1 Twilight + 3 Staged Images)", price: "$115" },
-                { name: "Virtual Staging — per image", price: "$40" },
-                { name: "Virtual Staging — 3-image set", price: "$100" },
-                { name: "Virtual Twilight — per image", price: "$30" },
-                { name: "360° Interactive Tour (6-month hosting)", price: "$185" },
-                { name: "Same-Day Delivery (Stills only, by 8PM)", price: "$50" }
+                { name: "Vacant Home Refresh (1 Twilight + 3 Staged Images)", price: "$115", tooltip: "One virtual twilight exterior plus three virtually staged interior images" },
+                { name: "Virtual Staging — per image", price: "$40", tooltip: "Digitally furnished empty room, per photo" },
+                { name: "Virtual Staging — 3-image set", price: "$100", tooltip: "Three digitally staged images, bundle discount" },
+                { name: "Virtual Twilight — per image", price: "$30", tooltip: "Day-to-dusk sky replacement for exteriors" },
+                { name: "360° Interactive Tour (6-month hosting)", price: "$185", tooltip: "Full interactive walkthrough with 6 months hosting" },
+                { name: "Same-Day Delivery (Stills only, by 8PM)", price: "$50", tooltip: "Expedited 24hr turnaround to same-day by 8PM" }
             ]
         },
         str: {
@@ -134,21 +134,21 @@ function fetchPricing() {
                 ]
             },
             addons: [
-                { name: "Marketing 2D Floor Plan", price: "$115" },
-                { name: "MLS Walkthrough Video (Horizontal)", price: "$175" },
-                { name: "Social Media Reel (Vertical)", price: "$155" },
-                { name: "Video Bundle (Walkthrough + Reel)", price: "$275" },
-                { name: "Virtual Twilight — per image", price: "$35" },
-                { name: "Virtual Staging — per image", price: "$45" }
+                { name: "Marketing 2D Floor Plan", price: "$115", tooltip: "Professional labeled floor plan for listings" },
+                { name: "MLS Walkthrough Video (Horizontal)", price: "$175", tooltip: "Cinematic horizontal walkthrough for MLS" },
+                { name: "Social Media Reel (Vertical)", price: "$155", tooltip: "Vertical short-form reel for Instagram/TikTok" },
+                { name: "Video Bundle (Walkthrough + Reel)", price: "$275", tooltip: "Both horizontal and vertical videos, bundled savings" },
+                { name: "Virtual Twilight — per image", price: "$35", tooltip: "Day-to-dusk sky replacement for exteriors" },
+                { name: "Virtual Staging — per image", price: "$45", tooltip: "Digitally furnished empty room, per photo" }
             ]
         },
         construction: {
             displayType: "cards+table",
             cards: [
                 { name: "Standard Visit", tagline: "Single Progress Visit", features: ["Exterior overview", "Up to 3 designated rooms", "Professional post-editing", "Secure digital delivery", "48-hour turnaround"] },
-                { name: "Best Value", tagline: "Transformation Package", features: ["Two scheduled visits", "Before & After comparison formatting", "Organized milestone delivery"], featured: true },
-                { name: "Multi-Visit", tagline: "3-Visit Plan", features: ["Three scheduled visits", "Standard scope per visit", "Flexible milestone scheduling"] },
-                { name: "Full Documentation", tagline: "5-Visit Plan", features: ["Five milestone visits", "Comprehensive project coverage", "Standard scope per visit"] }
+                { name: "Best Value", tagline: "Transformation Package", features: ["Everything in Standard Visit", "Two scheduled visits", "Before & After comparison formatting", "Organized milestone delivery"], featured: true },
+                { name: "Multi-Visit", tagline: "3-Visit Plan", features: ["Everything in Transformation", "Three scheduled visits", "Flexible milestone scheduling", "Progress timeline gallery"] },
+                { name: "Full Documentation", tagline: "5-Visit Plan", features: ["Everything in Multi-Visit", "Five milestone visits", "Comprehensive project coverage", "Final highlight reel", "Full archive delivery"] }
             ],
             table: {
                 headers: ["Plan Type", "Standard Visit", "Transformation", "3-Visit Plan", "5-Visit Plan"],
@@ -159,10 +159,11 @@ function fetchPricing() {
                 ]
             },
             addons: [
-                { name: "Project Walkthrough Video (4K Horizontal)", price: "$200" },
-                { name: "Social Highlight Reel (Vertical 30–60s)", price: "$200" },
-                { name: "360° Interactive Capture", price: "$200" },
-                { name: "Standalone 360° Visit", price: "$300" }
+                { name: "Project Walkthrough Video (4K Horizontal)", price: "$200", tooltip: "Cinematic 4K walkthrough of the project site" },
+                { name: "Social Highlight Reel (Vertical 30–60s)", price: "$200", tooltip: "Vertical short-form reel for social media promotion" },
+                { name: "360° Interactive Capture", price: "$200", tooltip: "Full interactive 360° view of project site" },
+                { name: "Standalone Drone Package", price: "$200", tooltip: "Aerial photography and video of the entire project site" },
+                { name: "Standalone 360° Visit", price: "$300", tooltip: "Dedicated 360° capture visit at any milestone" }
             ]
         }
     };
@@ -230,10 +231,10 @@ function renderPricingCategory(catId, data) {
     if (data.addons && data.addons.length > 0) {
         const label = catId === 'construction' ? 'Visual Add-Ons' : 'Add-On Services';
         html += `
-            <div class="section-label" style="margin-top:48px; margin-bottom:20px;">${label}</div>
+            <div class="section-label addons-label">${label}</div>
             <div class="addons-grid">
                 ${data.addons.map(a => `
-                    <div class="addon-item">
+                    <div class="addon-item" data-tooltip="${a.tooltip || a.name}">
                         <span>${a.name}</span>
                         <div class="addon-price">${a.price}</div>
                     </div>

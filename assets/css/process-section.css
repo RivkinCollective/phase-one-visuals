@@ -139,6 +139,14 @@
   line-height: 1.65;
 }
 
+.process-section .section-label {
+  justify-content: center;
+}
+
+.process-section .section-label::before {
+  display: none;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 680px) {
   .process-steps {

@@ -3,7 +3,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 68px;
   background: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
