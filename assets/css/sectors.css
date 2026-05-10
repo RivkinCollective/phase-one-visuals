@@ -91,6 +91,47 @@
     margin-top: auto;
   }
 
+  .sector-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 32px;
+    transition: all 0.3s ease;
+  }
+
+  .sector-cta--re {
+    background: var(--gold);
+    color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(200, 134, 26, 0.25), 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .sector-cta--re:hover {
+    box-shadow: 0 0 32px rgba(200, 134, 26, 0.45), 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+
+  .sector-cta--cons {
+    background: var(--black);
+    color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(200, 134, 26, 0.15), 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .sector-cta--cons:hover {
+    box-shadow: 0 0 32px rgba(200, 134, 26, 0.35), 0 4px 12px rgba(0,0,0,0.12);
+    background: var(--charcoal);
+    transform: translateY(-2px);
+  }
+
   .sector-panel.real-estate h2 {
     color: var(--black);
   }

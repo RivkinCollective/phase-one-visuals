@@ -206,19 +206,20 @@ function renderPricingCategory(catId, data) {
 
     // 2. Render Table (if any)
     if (data.table && data.table.headers) {
+        const headers = data.table.headers;
         html += `
             <div class="pricing-table-wrapper">
                 <table class="pricing-table">
                     <thead>
                         <tr>
-                            ${data.table.headers.map((h, i) => `<th class="${i === 2 ? 'gold-col' : ''}">${h}</th>`).join('')}
+                            ${headers.map((h, i) => `<th class="${i === 2 ? 'gold-col' : ''}">${h}</th>`).join('')}
                         </tr>
                     </thead>
                     <tbody>
                         ${data.table.rows.map(row => `
                             <tr>
                                 ${(row.cells || []).map((cell, i) => `
-                                    <td class="${i === 0 ? '' : 'price-cell'} ${i === 2 ? 'gold-col' : ''}">${cell}</td>
+                                    <td class="${i === 0 ? '' : 'price-cell'} ${i === 2 ? 'gold-col' : ''}" data-label="${headers[i] || ''}">${cell}</td>
                                 `).join('')}
                             </tr>
                         `).join('')}

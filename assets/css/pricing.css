@@ -47,7 +47,7 @@
   background: transparent;
   border: 2px solid var(--divider);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.3s;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   font-family: var(--sans);
   box-shadow: none;
 }
@@ -56,6 +56,7 @@
   background: transparent;
   color: var(--gold);
   border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(200, 134, 26, 0.25), inset 0 0 8px rgba(200, 134, 26, 0.06);
 }
 
 .tab-btn:not(.active):hover {
@@ -483,83 +484,102 @@
     font-size: 12px;
   }
 
-  /* TABLE UX FIX */
+  /* TABLE — card layout on mobile */
   .pricing-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
+    overflow-x: visible;
+    -webkit-overflow-scrolling: auto;
+    position: static;
   }
 
   .pricing-table-wrapper::after {
-    content: '\2190  swipe  \2192';
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--slate);
-    background: var(--white);
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--divider);
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-  }
-
-  .pricing-table-wrapper.scrolled::after {
-    opacity: 0;
+    display: none;
   }
 
   .pricing-table {
-    min-width: 640px;
-    /* prevents squishing */
+    min-width: auto;
+    border: none;
   }
 
-  /* Removed fade hint as first column is now sticky */
+  .pricing-table thead {
+    display: none;
+  }
 
-  /* Reduce table padding slightly */
-  .pricing-table th,
+  .pricing-table tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    background: var(--white);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pricing-table tbody tr:hover {
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+  }
+
   .pricing-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .pricing-table td:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-table td:first-child {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    justify-content: center;
     padding: 14px 16px;
+    border-bottom: none;
+    position: static;
+    z-index: auto;
+    border-right: none;
+    box-shadow: none;
+  }
+
+  .pricing-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    margin-right: 12px;
+  }
+
+  .pricing-table td:first-child::before {
+    display: none;
   }
 
   .pricing-table td.price-cell {
-    font-size: 18px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .pricing-table td.price-cell.gold-col {
+    color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .pricing-table thead th.gold-col::before {
+    display: none;
   }
 
   .construction-pkg-grid {
     grid-template-columns: 1fr;
-  }
-
-  #panel-construction .pricing-table-wrapper {
-    display: none;
-  }
-
-  /* Fixed First Column for Mobile */
-  .pricing-table th:first-child,
-  .pricing-table td:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 5;
-    border-right: 1px solid var(--divider);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
-  }
-
-  .pricing-table thead th:first-child {
-    background: var(--black);
-  }
-
-  .pricing-table tbody td:first-child {
-    background: var(--white);
-  }
-
-  .pricing-table tbody tr:hover td:first-child {
-    background: var(--gold-pale);
   }
 
   /* Better section spacing */
@@ -575,10 +595,6 @@
 
 /* ---------- Small Mobile ---------- */
 @media (max-width: 480px) {
-
-  .pricing-table {
-    min-width: 640px;
-  }
 
   .section-title {
     font-size: 26px;
