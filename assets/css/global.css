@@ -918,9 +918,9 @@ section {
   border-top: 3px solid var(--gold);
   border-radius: 16px;
   box-sizing: border-box;
-  max-width: 640px;
+  max-width: 600px;
   width: 100%;
-  padding: 32px 32px 28px;
+  padding: 36px 36px 28px;
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -955,21 +955,21 @@ section {
 
 .booking-modal-header {
   text-align: center;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--divider);
 }
 
 .booking-modal-header h3 {
   font-family: var(--serif);
-  font-size: clamp(22px, 3vw, 28px);
+  font-size: clamp(20px, 2.8vw, 26px);
   font-weight: 700;
   color: var(--black);
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
 .booking-modal-header p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--slate);
 }
 
