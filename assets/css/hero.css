@@ -146,7 +146,7 @@
   @media (max-width: 768px) {
     .hero {
       min-height: auto;
-      padding: 100px 20px 80px;
+      padding: 100px 20px 100px;
     }
 
     .hero h1 {
@@ -190,7 +190,7 @@
   /* Mobile */
   @media (max-width: 480px) {
     .hero {
-      padding: 80px 16px 60px;
+      padding: 80px 16px 90px;
     }
 
     .hero h1 {

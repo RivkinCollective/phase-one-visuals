@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+@media (max-width: 680px) {
+  .process-section {
+    padding: 60px 16px 40px;
+  }
+}
+
 /* ─── STEPS WRAPPER ─── */
 .process-steps {
   display: flex;
@@ -162,7 +168,7 @@
     flex-direction: row;
     text-align: left;
     align-items: flex-start;
-    padding: 0 0 44px 0;
+    padding: 0 0 28px 0;
     position: relative;
   }
 

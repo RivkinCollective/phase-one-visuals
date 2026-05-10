@@ -84,6 +84,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -769,19 +770,35 @@ section {
     position: relative;
     z-index: 2;
     color: var(--gold);
+    width: 18px;
+    height: 18px;
     animation: bounce 1.6s ease-in-out infinite;
   }
 
   /* Hide on mobile — reduced size instead of hidden */
   @media (max-width: 768px) {
     .scroll-arrow {
-      bottom: 24px;
-      width: 40px;
-      height: 40px;
+      bottom: 32px;
+      width: 48px;
+      height: 48px;
+    }
+    .scroll-arrow .circle {
+      inset: 5px;
     }
     .scroll-arrow .arrow-icon {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .scroll-arrow {
+      bottom: 20px;
+      width: 44px;
+      height: 44px;
+    }
+    .scroll-arrow .circle {
+      inset: 4px;
     }
   }
 
