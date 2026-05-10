@@ -613,7 +613,7 @@
           </div>
           <div class="cf-field">
             <label>Project Location</label>
-            <input type="text" name="location" placeholder="City, State or full address">
+            <input type="text" name="location" id="cf-location" placeholder="City, State or full address" autocomplete="off">
           </div>
         </div>
         <div class="cf-field cf-field--full">
@@ -693,6 +693,7 @@
   </div>
 
   <!-- My Logic -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG5IqXi9ds5GAn0gOEB2xFIsQuUFivLYM&libraries=places&loading=async" async defer></script>
   <script src="assets/js/firebase-config.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/content-manager.js"></script>

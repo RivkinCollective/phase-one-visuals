@@ -45,26 +45,7 @@ footer::before {
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 24px;
-  position: relative;
-  padding-bottom: 12px;
-}
-
-.footer-col h5::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 24px;
-  height: 2px;
-  background: var(--gold);
-}
-
-@media (max-width: 1024px) {
-  .footer-col h5::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  margin-bottom: 20px;
 }
 
 .footer-col ul {
@@ -72,40 +53,18 @@ footer::before {
 }
 
 .footer-col ul li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .footer-col ul li a {
   font-size: 14px;
   color: #999;
   text-decoration: none;
-  transition: color 0.25s, padding-left 0.25s;
-  display: inline-block;
-  position: relative;
-  padding-left: 16px;
-}
-
-.footer-col ul li a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0;
-  transition: opacity 0.25s;
+  transition: color 0.25s;
 }
 
 .footer-col ul li a:hover {
   color: var(--gold);
-  padding-left: 20px;
-}
-
-.footer-col ul li a:hover::before {
-  opacity: 1;
 }
 
 /* ─── FOOTER BOTTOM ─── */
@@ -182,25 +141,12 @@ footer::before {
   .footer-grid {
     grid-template-columns: repeat(2, max-content);
     gap: 48px;
-    text-align: left;
+    text-align: center;
     justify-content: center;
   }
 
-  .footer-col h5::after {
-    left: 0;
-    transform: none;
-  }
-
-  .footer-col ul li a {
-    padding-left: 16px;
-  }
-
-  .footer-col ul li a:hover {
-    padding-left: 20px;
-  }
-
-  .footer-col ul li a::before {
-    display: block;
+  .footer-col {
+    text-align: center;
   }
 }
 
@@ -214,33 +160,20 @@ footer::before {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     padding-bottom: 40px;
-    text-align: left;
+    text-align: center;
     justify-content: center;
+  }
+
+  .footer-col {
+    text-align: center;
   }
 
   .footer-col h5 {
     margin-bottom: 14px;
-    padding-bottom: 10px;
-  }
-
-  .footer-col h5::after {
-    left: 0;
-    transform: none;
   }
 
   .footer-col ul li a {
     font-size: 13px;
-    display: inline-block;
-    padding: 4px 0;
-    padding-left: 16px;
-  }
-
-  .footer-col ul li a:hover {
-    padding-left: 20px;
-  }
-
-  .footer-col ul li a::before {
-    display: block;
   }
 
   .footer-bottom {
