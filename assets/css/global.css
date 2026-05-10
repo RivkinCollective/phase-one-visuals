@@ -367,6 +367,11 @@ section {
 .btn-book {
   background: var(--gold);
   color: #FFFFFF;
+  box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-book:hover {
+  box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .btn-book::before {
