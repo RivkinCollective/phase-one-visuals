@@ -150,12 +150,10 @@
 
 /* Package cards */
 .package-cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 40px;
-  flex-wrap: wrap;
 }
 
 .pkg-card {
@@ -356,10 +354,8 @@
 /* ---------- Tablet ---------- */
 @media (max-width: 1024px) {
 
-  .package-cards .pkg-card {
-    /* grid-template-columns: repeat(2, 1fr); */
-    width: 49%;
-
+  .package-cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .addons-grid {
@@ -384,8 +380,8 @@
   }
 
   /* Stack cards */
-  .package-cards .pkg-card {
-    width: 100%;
+  .package-cards {
+    grid-template-columns: 1fr;
   }
 
   .pkg-card {

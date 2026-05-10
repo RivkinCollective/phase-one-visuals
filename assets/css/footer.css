@@ -1,7 +1,7 @@
 /* ─── FOOTER ─── */
 footer {
-  background: var(--footer-bg);
-  color: var(--footer-title);
+  background: var(--gold-pale);
+  color: var(--black);
   padding: 80px 0 40px;
   border-top: 3px solid var(--gold);
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -25,33 +25,30 @@ footer .footer-brand img {
 .nav-footer-logo-text {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* gap: 2px; */
-  line-height: 0.1;
-  /* fixed: was 0, which collapses on reflow */
   align-items: center;
+  gap: 2px;
   margin-bottom: 11px;
 }
 
 footer .nav-footer-logo-text .phase-one {
-  font-family: 'Gotham-Bold', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   text-transform: uppercase;
-  color: #ffffff;
-  font-weight: 600;
-  line-height: 0.1;
+  color: var(--black);
+  font-weight: 700;
+  line-height: 1.2;
   white-space: nowrap;
   display: block;
 }
 
 footer .nav-footer-logo-text .visuals {
-  font-family: 'Gotham-Bold', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   letter-spacing: 0.4em;
-  color: #D49B54;
+  color: var(--gold);
   text-transform: uppercase;
   font-weight: 600;
-  line-height: 0.1;
+  line-height: 1.2;
   white-space: nowrap;
   display: block;
 }
@@ -67,10 +64,9 @@ footer .nav-footer-logo-text .visuals {
 
 .footer-brand p {
   font-size: 14px;
-  color: var(--footer-text);
+  color: var(--slate);
   line-height: 1.7;
   margin-top: 20px;
-  /* max-width: 280px; */
 }
 
 .footer-col h5 {
@@ -92,13 +88,17 @@ footer .nav-footer-logo-text .visuals {
 
 .footer-col ul li a {
   font-size: 14px;
-  color: var(--footer-text);
+  color: var(--slate);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-col ul li a:hover {
-  color: white;
+  color: var(--black);
+}
+
+.footer-grid {
+  border-bottom: 1px solid var(--gold-border);
 }
 
 /* ─── FOOTER BOTTOM ─── */
@@ -111,7 +111,7 @@ footer .nav-footer-logo-text .visuals {
 
 .footer-bottom p {
   font-size: 12px;
-  color: var(--footer-text);
+  color: var(--slate);
 }
 
 .footer-bottom a {

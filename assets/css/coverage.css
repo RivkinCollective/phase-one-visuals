@@ -2,6 +2,13 @@
   background: var(--white);
 }
 
+.coverage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .coverage-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -103,9 +110,6 @@
 
   .coverage-content {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .coverage-facts {

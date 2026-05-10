@@ -16,13 +16,64 @@
   }
 
   .sector-panel {
-    padding: 80px;
+    padding: 80px 60px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     overflow: hidden;
     transition: flex 0.4s;
+  }
+
+  .sector-panel.real-estate {
+    background: var(--white);
+    border-right: 1px solid var(--divider);
+  }
+
+  .sector-panel.construction {
+    background: var(--construction-bg);
+    color: #FFFFFF;
+  }
+
+  .sector-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .sector-panel h2 {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    min-height: 96px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .sector-panel p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 24px;
+    min-height: 85px;
+  }
+
+  .sector-panel.construction p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .sector-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .sector-panel .pov-btn {
+    margin-top: auto;
   }
 
   .sector-panel.real-estate {
@@ -113,13 +164,26 @@
 
   /* Large Tablet */
   @media (max-width: 1200px) {
-    .sector-panel {
-      padding: 60px;
-    }
+  .sector-panel {
+    padding: 60px;
+    min-height: auto;
+    justify-content: flex-start;
+  }
 
-    .sector-panel h2 {
-      font-size: 38px;
-    }
+  .sector-panel h2 {
+    min-height: auto;
+    display: block;
+    font-size: 38px;
+  }
+
+  .sector-panel p {
+    min-height: auto;
+    max-width: 100%;
+  }
+
+  .sector-features li {
+    justify-content: center;
+  }
   }
 
   /* Tablet (Stack 2x1) */

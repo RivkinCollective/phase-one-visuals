@@ -555,6 +555,17 @@ section {
   stroke: var(--white);
 }
 
+/* Hero book button — icon always visible */
+.hero-actions .btn-book .icon {
+  width: 26px;
+  opacity: 1;
+}
+
+.hero-actions .btn-book .icon svg {
+  width: 22px;
+  height: 22px;
+}
+
 /* ─── BTN 4 — REAL ESTATE PACKAGE (dark) ─── */
 .btn-re .tab-btn.active {
   background: var(--black);
@@ -730,7 +741,9 @@ section {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1.5px dashed rgba(212, 155, 84, 0.45);
+    border: 1.5px dashed var(--gold);
+    border-color: var(--gold);
+    opacity: 0.45;
     animation: spin 8s linear infinite;
   }
 
@@ -739,21 +752,23 @@ section {
     position: absolute;
     inset: 6px;
     border-radius: 50%;
-    border: 1px solid rgba(212, 155, 84, 0.3);
-    background: rgba(212, 155, 84, 0.06);
-    transition: background 0.3s, border-color 0.3s;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+    background: var(--gold-pale);
+    transition: background 0.3s, border-color 0.3s, opacity 0.3s;
   }
 
   .scroll-arrow:hover .circle {
-    background: rgba(212, 155, 84, 0.18);
-    border-color: rgba(212, 155, 84, 0.7);
+    background: var(--gold-pale);
+    opacity: 0.7;
+    border-color: var(--gold);
   }
 
   /* Arrow SVG bouncing */
   .scroll-arrow .arrow-icon {
     position: relative;
     z-index: 2;
-    color: #D49B54;
+    color: var(--gold);
     animation: bounce 1.6s ease-in-out infinite;
   }
 
@@ -776,7 +791,7 @@ section {
   /* pulse glow on hover */
   .scroll-arrow:hover .arrow-icon {
     animation: bounce 0.9s ease-in-out infinite;
-    color: #e8b06a;
+    color: var(--gold-light);
   }
 /* --- SCROLL TO TOP --- */
 .scroll-top-btn {
@@ -1115,4 +1130,287 @@ section {
 .booking-modal {
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.12) transparent;
+}
+
+/* ─── CONSTRUCTION FORM MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-panel {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 16px;
+  max-width: 680px;
+  width: 100%;
+  padding: 48px 40px 40px;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  transform: translateY(30px) scale(0.96);
+  transition: transform 0.4s var(--ease-spring);
+  box-shadow: var(--elevation-4);
+}
+
+.modal-overlay.active .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--slate);
+  padding: 8px;
+  border-radius: 50%;
+  transition: color 0.2s, background 0.2s;
+  z-index: 6;
+}
+
+.modal-close:hover {
+  color: var(--black);
+  background: var(--mist);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.modal-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+}
+
+.modal-header h3 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.modal-header p {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.5;
+}
+
+/* ─── CONSTRUCTION FORM ─── */
+.cf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cf-field--full {
+  grid-column: 1 / -1;
+}
+
+.cf-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.cf-req {
+  color: var(--gold);
+}
+
+.cf-field input,
+.cf-field textarea,
+.cf-field select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--divider);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--black);
+  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  outline: none;
+}
+
+.cf-field input::placeholder,
+.cf-field textarea::placeholder {
+  color: var(--slate);
+  opacity: 0.5;
+}
+
+.cf-field input:focus,
+.cf-field textarea:focus,
+.cf-field select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-pale);
+}
+
+.cf-field textarea {
+  resize: vertical;
+  min-height: 80px;
+  padding: 14px 16px;
+}
+
+.cf-select-wrap {
+  position: relative;
+}
+
+.cf-select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%235A5A5A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* ─── CHECKBOX GRID ─── */
+.cf-checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cf-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--divider);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--charcoal);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cf-checkbox:hover {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+}
+
+.cf-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.cf-checkbox:has(input:checked) {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+}
+
+/* ─── SUBMIT BUTTON ─── */
+.cf-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 32px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  margin-top: 4px;
+}
+
+.cf-submit:hover {
+  background: var(--black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.18);
+}
+
+.cf-submit:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.cf-submit.success {
+  background: #2e7d32;
+  pointer-events: none;
+}
+
+/* ─── CONSTRUCTION FORM RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .modal-panel--form {
+    padding: 32px 20px 28px;
+    border-radius: 12px;
+    max-width: 94vw;
+    max-height: 90vh;
+  }
+
+  .cf-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+  }
+
+  .cf-field input,
+  .cf-field textarea,
+  .cf-field select {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
 }

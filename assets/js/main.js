@@ -4,56 +4,58 @@ window.addEventListener('load', () => {
   if (preloader) {
     preloader.classList.add('preloader-hidden');
     setTimeout(() => {
-      preloader.style.display = 'none'; // Clear from layout after fade
+      preloader.style.display = 'none';
     }, 1000);
   }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.querySelector('#contactForm');
+  const constructionForm = document.querySelector('#constructionForm');
 
-  if (contactForm && typeof db !== 'undefined') {
-    contactForm.addEventListener('submit', async (e) => {
+  if (constructionForm && typeof db !== 'undefined') {
+    constructionForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const submitBtn = contactForm.querySelector('button');
-      const originalBtnText = submitBtn.innerHTML;
-
-      // Set Loading state
+      const submitBtn = constructionForm.querySelector('.cf-submit');
+      const originalHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="label">SENDING...</span>';
+      submitBtn.innerHTML = '<span>SENDING...</span>';
+
+      const services = [];
+      constructionForm.querySelectorAll('input[name="services"]:checked').forEach(cb => {
+        services.push(cb.value);
+      });
 
       const formData = {
-        name: contactForm.name.value,
-        email: contactForm.email.value,
-        company: contactForm.company.value || 'N/A',
-        topic: contactForm.topic.value || 'N/A',
-        message: contactForm.message.value,
+        name: constructionForm.name.value,
+        email: constructionForm.email.value,
+        phone: constructionForm.phone.value || 'N/A',
+        company: constructionForm.company.value || 'N/A',
+        projectType: constructionForm.projectType.value,
+        location: constructionForm.location.value || 'N/A',
+        services: services,
+        timeline: constructionForm.timeline.value || 'N/A',
+        visitCount: constructionForm.visitCount.value || 'N/A',
+        details: constructionForm.details.value || '',
+        source: 'construction',
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       };
 
       try {
         await db.collection('leads').add(formData);
-
-        // Success state
-        submitBtn.innerHTML = '<span class="label">SENT!</span>';
-        submitBtn.style.background = 'var(--gold)';
-        submitBtn.style.borderColor = 'var(--gold)';
-        submitBtn.style.color = 'white';
-
-        contactForm.reset();
-
+        submitBtn.innerHTML = '<span>INQUIRY SENT!</span>';
+        submitBtn.classList.add('success');
+        constructionForm.reset();
         setTimeout(() => {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.style = ''; // Reset styles
-        }, 5000);
-
+          submitBtn.innerHTML = originalHTML;
+          submitBtn.classList.remove('success');
+        }, 4000);
       } catch (error) {
-        console.error("Error adding document: ", error);
-        alert("Something went wrong. Please try again later.");
+        console.error("Error submitting construction inquiry: ", error);
+        alert("Something went wrong. Please try again or call (609) 851-1027.");
         submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
+        submitBtn.innerHTML = originalHTML;
       }
     });
   }
@@ -132,40 +134,64 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     document.body.style.overflow = '';
   }
 
-  // Intercept all "Book" buttons (btn-book class)
   document.querySelectorAll('.btn-book').forEach(function (btn) {
     btn.addEventListener('click', openModal);
   });
 
-  // Close button
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
   }
 
-  // Close on overlay click
   modal.addEventListener('click', function (e) {
     if (e.target === modal) closeModal();
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal();
     }
   });
 
-  // Construction "Request a Quote" scrolls to contact form
   if (consFormBtn) {
     consFormBtn.addEventListener('click', function () {
       closeModal();
-      var bookSection = document.getElementById('book');
-      if (bookSection) {
-        setTimeout(function () {
-          bookSection.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      }
+      setTimeout(function () {
+        openConstructionForm();
+      }, 300);
     });
   }
+})();
+
+// --- CONSTRUCTION FORM MODAL ---
+(function () {
+  const cfModal = document.getElementById('constructionFormModal');
+  const cfCloseBtn = document.getElementById('constructionFormClose');
+
+  if (!cfModal) return;
+
+  window.openConstructionForm = function () {
+    cfModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeConstructionForm() {
+    cfModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (cfCloseBtn) {
+    cfCloseBtn.addEventListener('click', closeConstructionForm);
+  }
+
+  cfModal.addEventListener('click', function (e) {
+    if (e.target === cfModal) closeConstructionForm();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && cfModal.classList.contains('active')) {
+      closeConstructionForm();
+    }
+  });
 })();
 
 

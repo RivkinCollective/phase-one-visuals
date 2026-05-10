@@ -216,6 +216,42 @@ nav > a:has(.nav-logo-text) {
   min-width: 0;
 }
 
+#nav-rspn-btn .label {
+  max-width: clamp(0px, 100vw - 500px, 150px);
+  opacity: clamp(0, (100vw - 500px) / 120px, 1);
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.15s linear, opacity 0.15s linear;
+}
+
+#nav-rspn-btn .icon {
+  width: 26px;
+  opacity: 1;
+  flex-shrink: 0;
+}
+
+.nav-book-btn {
+  height: clamp(32px, 504px - 100vw, 44px);
+  padding: 0 clamp(0px, 100vw - 500px, 14px);
+  width: fit-content;
+  transition: height 0.15s linear, padding 0.15s linear;
+}
+
+#nav-rspn-btn .label {
+  max-width: clamp(0px, 100vw - 500px, 150px);
+  opacity: clamp(0, (100vw - 500px) / 120px, 1);
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.15s linear, opacity 0.15s linear;
+}
+
+#nav-rspn-btn .icon {
+  width: clamp(0px, 620px - 100vw, 26px);
+  opacity: clamp(0, (620px - 100vw) / 120px, 1);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
 /* ── Glass overlay ── */
 .nav-overlay {
   position: fixed;
@@ -241,7 +277,7 @@ nav > a:has(.nav-logo-text) {
   nav {
     height: 60px;
     padding: 0 16px;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
   }
 
   .menu-toggle {
@@ -347,22 +383,6 @@ nav > a:has(.nav-logo-text) {
   nav {
     padding: 0 12px;
     height: 56px;
-  }
-
-  #nav-rspn-btn .label {
-    display: none;
-  }
-
-  #nav-rspn-btn .pov-btn {
-    width: clamp(28px, 6vw, 40px) !important;
-    height: clamp(28px, 6vw, 40px) !important;
-    padding: 0 !important;
-    border-radius: 8px;
-  }
-
-  #nav-rspn-btn .icon {
-    width: clamp(14px, 3vw, 20px);
-    opacity: 1;
   }
 
   #nav-rspn-btn .icon svg {
