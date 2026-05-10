@@ -84,7 +84,19 @@
 html,
 body {
   scroll-behavior: smooth;
-  scroll-padding-top: 64px;
+  scroll-padding-top: 68px;
+}
+
+@media (max-width: 1100px) {
+  html, body {
+    scroll-padding-top: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  html, body {
+    scroll-padding-top: 56px;
+  }
 }
 
 body {

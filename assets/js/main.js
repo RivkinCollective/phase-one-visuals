@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
       } catch (error) {
         console.error("Error submitting construction inquiry: ", error);
-        alert("Something went wrong. Please try again or call (609) 851-1027.");
+        alert("Something went wrong. Please try again or email info@phaseonevisuals.com.");
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
       }
@@ -227,13 +227,41 @@ function switchTab(tab, btn) {
   document.getElementById('panel-' + tab).classList.add('active');
   if (btn) btn.classList.add('active');
   activeTab = tab;
-  var pricingSection = document.querySelector('.pricing-section');
-  if (pricingSection) {
-    pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
 }
+
+// Swipe navigation for pricing tabs
+(function initPricingSwipe() {
+  var pricingEl = document.querySelector('.pricing-section');
+  if (!pricingEl) return;
+  var tabOrder = ['residential', 'str', 'construction'];
+  var startX = 0;
+  var startY = 0;
+
+  pricingEl.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  pricingEl.addEventListener('touchend', function(e) {
+    if (e.target.closest('.pricing-table-wrapper')) return;
+    var endX = e.changedTouches[0].clientX;
+    var endY = e.changedTouches[0].clientY;
+    var dx = endX - startX;
+    var dy = endY - startY;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+    var currentIdx = tabOrder.indexOf(activeTab);
+    if (currentIdx === -1) return;
+    if (dx < 0 && currentIdx < tabOrder.length - 1) {
+      // swipe left -> next tab
+      var nextTab = tabOrder[currentIdx + 1];
+      switchTab(nextTab, document.getElementById('tab-' + nextTab) || document.querySelector('.tab-btn[onclick*="' + nextTab + '"]'));
+    } else if (dx > 0 && currentIdx > 0) {
+      // swipe right -> previous tab
+      var prevTab = tabOrder[currentIdx - 1];
+      switchTab(prevTab, document.getElementById('tab-' + prevTab) || document.querySelector('.tab-btn[onclick*="' + prevTab + '"]'));
+    }
+  });
+})();
 
 // Scroll to Top Logic
 const scrollTopBtn = document.querySelector('#scroll-to-top');
