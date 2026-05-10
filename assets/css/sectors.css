@@ -1,7 +1,28 @@
-  /* ─── SECTOR SPLIT ─── */
-  .sectors {
+.sectors {
     background: var(--mist);
     padding: 0;
+  }
+
+  .sector-mobile-nav {
+    display: none;
+    text-align: center;
+    padding: 16px 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .sector-mobile-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 6px 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .sector-mobile-nav span {
+    color: var(--divider);
   }
 
   .sectors em {
@@ -32,7 +53,7 @@
 
   .sector-panel.construction {
     background: var(--construction-bg);
-    color: #FFFFFF;
+    color: var(--black);
   }
 
   .sector-tag {
@@ -64,7 +85,7 @@
   }
 
   .sector-panel.construction p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--slate);
   }
 
   .sector-features {
@@ -83,7 +104,7 @@
 
   .sector-panel.construction {
     background: var(--construction-bg);
-    color: #FFFFFF;
+    color: var(--black);
   }
 
   .sector-tag {
@@ -109,7 +130,7 @@
   }
 
   .sector-panel.construction h2 {
-    color: #FFFFFF;
+    color: var(--black);
   }
 
   .sector-panel p {
@@ -121,7 +142,7 @@
   }
 
   .sector-panel.construction p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--slate);
   }
 
   .sector-features {
@@ -140,8 +161,8 @@
   }
 
   .sector-panel.construction .sector-features li {
-    color: rgba(255, 255, 255, 0.8);
-    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--slate);
+    border-color: var(--divider);
   }
 
   .sector-features li::before {
@@ -186,12 +207,14 @@
   }
   }
 
-  /* Tablet (Stack 2x1) */
+/* Tablet (Stack 2x1) */
   @media (max-width: 992px) {
     .sectors .container {
       padding: 0;
+    }
 
-
+    .sector-mobile-nav {
+      display: block;
     }
 
     .sector-split {
@@ -201,12 +224,12 @@
     .sector-panel {
       padding: 70px 50px;
       min-height: auto;
-      text-align: center !important;
+      text-align: center;
       align-items: center;
     }
 
-    .sector-panel * {
-      margin: auto;
+    .sector-panel .pov-btn {
+      align-self: center;
     }
 
     .sector-panel.real-estate {

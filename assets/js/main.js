@@ -70,50 +70,54 @@ if (currentTheme) {
   document.documentElement.setAttribute('data-theme', currentTheme);
 }
 
-themeToggle.addEventListener('click', () => {
-  let theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  }
-});
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    let theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}
 
 //navbar
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-links');
 const navOverlay = document.querySelector('#nav-overlay');
 
-function openNav() {
-  menuLinks.classList.add('active');
-  menu.classList.add('is-active');
-  if (navOverlay) navOverlay.classList.add('active');
-}
-
-function closeNav() {
-  menuLinks.classList.remove('active');
-  menu.classList.remove('is-active');
-  if (navOverlay) navOverlay.classList.remove('active');
-}
-
-menu.addEventListener('click', function () {
-  if (menuLinks.classList.contains('active')) {
-    closeNav();
-  } else {
-    openNav();
+if (menu && menuLinks) {
+  function openNav() {
+    menuLinks.classList.add('active');
+    menu.classList.add('is-active');
+    if (navOverlay) navOverlay.classList.add('active');
   }
-});
 
-if (navOverlay) {
-  navOverlay.addEventListener('click', closeNav);
+  function closeNav() {
+    menuLinks.classList.remove('active');
+    menu.classList.remove('is-active');
+    if (navOverlay) navOverlay.classList.remove('active');
+  }
+
+  menu.addEventListener('click', function () {
+    if (menuLinks.classList.contains('active')) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeNav);
+  }
+
+  // Close menu and reset icon when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
 }
-
-// Close menu and reset icon when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', closeNav);
-});
 
 // --- BOOKING MODAL ---
 (function () {
@@ -223,26 +227,33 @@ function switchTab(tab, btn) {
   document.getElementById('panel-' + tab).classList.add('active');
   if (btn) btn.classList.add('active');
   activeTab = tab;
-  document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  var pricingSection = document.querySelector('.pricing-section');
+  if (pricingSection) {
+    pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 // Scroll to Top Logic
 const scrollTopBtn = document.querySelector('#scroll-to-top');
 
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 300) {
-    scrollTopBtn.classList.add('show');
-  } else {
-    scrollTopBtn.classList.remove('show');
-  }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+if (scrollTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollTopBtn.classList.add('show');
+    } else {
+      scrollTopBtn.classList.remove('show');
+    }
   });
-});
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 
 // document.getElementById('scrollBtn').addEventListener('click', () => {
 //     document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
