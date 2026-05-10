@@ -34,7 +34,6 @@ footer::before {
   grid-template-columns: repeat(2, max-content);
   gap: 80px;
   padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
   justify-content: center;
 }
 
