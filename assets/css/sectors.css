@@ -69,9 +69,15 @@
     margin-top: auto;
   }
 
-  @keyframes ctaPulse {
-    0%, 100% { box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1); }
-    50%      { box-shadow: 0 0 40px rgba(200, 134, 26, 0.5), 0 4px 16px rgba(0,0,0,0.15); }
+  .sector-cta::after {
+    content: '→';
+    display: inline-block;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .sector-cta:hover::after {
+    animation: ctaArrow 0.5s ease infinite;
   }
 
   @keyframes ctaArrow {
@@ -95,6 +101,11 @@
     transition: background 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     align-self: center;
+  }
+
+  @keyframes ctaArrow {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(4px); }
   }
 
   .sector-cta::after {
