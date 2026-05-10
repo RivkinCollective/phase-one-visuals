@@ -129,13 +129,16 @@ if (menu && menuLinks) {
 
   function openModal(e) {
     e.preventDefault();
+    var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarW + 'px';
   }
 
   function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
   }
 
   document.querySelectorAll('.btn-book').forEach(function (btn) {
@@ -174,13 +177,16 @@ if (menu && menuLinks) {
   if (!cfModal) return;
 
   window.openConstructionForm = function () {
+    var scrollbarW = window.innerWidth - document.documentElement.clientWidth;
     cfModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = scrollbarW + 'px';
   };
 
   function closeConstructionForm() {
     cfModal.classList.remove('active');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
   }
 
   if (cfCloseBtn) {
