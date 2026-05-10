@@ -915,11 +915,12 @@ section {
 .booking-modal {
   background: var(--white);
   border: 1px solid var(--divider);
+  border-top: 3px solid var(--gold);
   border-radius: 16px;
   box-sizing: border-box;
-  max-width: 740px;
+  max-width: 700px;
   width: 100%;
-  padding: 56px 40px 52px;
+  padding: 48px 40px 44px;
   max-height: calc(100vh - 64px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -935,8 +936,8 @@ section {
 
 .booking-modal-close {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 14px;
+  right: 14px;
   background: none;
   border: none;
   cursor: pointer;
@@ -955,6 +956,8 @@ section {
 .booking-modal-header {
   text-align: center;
   margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--divider);
 }
 
 .booking-modal-header h3 {
@@ -979,48 +982,52 @@ section {
 .booking-option {
   border: 2px solid var(--divider);
   border-radius: 12px;
-  padding: 28px 24px;
+  padding: 32px 24px 28px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  background: var(--white);
 }
 
 .booking-option:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-.booking-option-re:hover {
   border-color: var(--gold);
-}
-
-.booking-option-cons:hover {
-  border-color: var(--gold);
+  box-shadow: 0 0 32px rgba(200, 134, 26, 0.18), 0 8px 24px rgba(0,0,0,0.08);
 }
 
 .booking-option-icon {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--gold-pale);
+  border-radius: 16px;
+  border: 1px solid var(--gold-border);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.booking-option:hover .booking-option-icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.05);
 }
 
 .booking-option-icon svg {
-  width: 44px;
-  height: 44px;
-  color: var(--slate);
+  width: 36px;
+  height: 36px;
+  color: var(--gold);
   transition: color 0.3s;
 }
 
 .booking-option:hover .booking-option-icon svg {
-  color: var(--gold);
+  color: #fff;
 }
 
 .booking-option h4 {
@@ -1034,22 +1041,36 @@ section {
   font-size: 13px;
   color: var(--slate);
   line-height: 1.6;
+  max-width: 260px;
 }
 
 .booking-option-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-top: auto;
-  padding-top: 8px;
-  font-size: 12px;
+  padding: 12px 24px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--gold);
-  transition: color 0.2s;
+  color: #fff;
+  background: var(--gold);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 0 20px rgba(200, 134, 26, 0.2);
 }
 
-.booking-option-re:hover .booking-option-cta {
-  color: var(--gold-light);
+.booking-option-cta:hover {
+  background: var(--gold-light);
+  box-shadow: 0 0 32px rgba(200, 134, 26, 0.4);
+  transform: translateY(-2px);
+}
+
+.booking-option-cta::after {
+  content: '→';
+  font-size: 13px;
 }
 
 /* Construction option actions */
@@ -1067,7 +1088,7 @@ section {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   border-radius: 8px;
   font-size: 11px;
   font-weight: 700;
@@ -1081,13 +1102,16 @@ section {
 }
 
 .booking-cons-form {
-  background: var(--black);
-  color: var(--white);
+  background: var(--gold);
+  color: #fff;
   border: none;
+  box-shadow: 0 0 20px rgba(200, 134, 26, 0.2);
 }
 
 .booking-cons-form:hover {
-  background: var(--gold);
+  background: var(--gold-light);
+  box-shadow: 0 0 32px rgba(200, 134, 26, 0.4);
+  transform: translateY(-2px);
 }
 
 .booking-cons-call {
@@ -1099,6 +1123,8 @@ section {
 .booking-cons-call:hover {
   background: var(--gold);
   color: #fff;
+  box-shadow: 0 0 24px rgba(200, 134, 26, 0.3);
+  transform: translateY(-2px);
 }
 
 .booking-cons-btn svg {
@@ -1108,11 +1134,14 @@ section {
 /* Modal responsive */
 @media (max-width: 600px) {
   .booking-modal {
-    padding: 12px 12px 12px;
+    padding: 32px 20px 28px;
     max-width: 92vw;
-    border-radius: 10px;
-    overflow-y: visible;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+    border-radius: 12px;
+  }
+
+  .booking-modal-header {
+    padding-bottom: 18px;
+    margin-bottom: 24px;
   }
 
   .booking-modal-options {
@@ -1121,40 +1150,50 @@ section {
   }
 
   .booking-modal-header h3 {
-    font-size: 18px;
+    font-size: 20px;
   }
-  .booking-cons-actions {
-    flex-direction: column;
+
+  .booking-modal-header p {
+    font-size: 13px;
   }
 
   .booking-option {
-    padding: 10px 10px;
+    padding: 24px 20px;
   }
 
   .booking-option h4 {
     font-size: 18px;
   }
 
-  .booking-option-icon {
-    width: 48px;
-    height: 48px;
+  .booking-option p {
+    font-size: 12px;
+    line-height: 1.4;
   }
 
-  .booking-option-icon svg { width: 28px; height: 28px; }
+  .booking-option-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .booking-option-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .booking-option-cta {
+    padding: 10px 20px;
+    font-size: 10px;
+  }
+
+  .booking-cons-actions {
+    flex-direction: column;
+  }
 
   .booking-modal-close {
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     padding: 6px;
   }
-
-  .booking-modal-header p { font-size: 12px; }
-
-  .booking-option h4 { font-size: 15px; }
-
-  .booking-option p { font-size: 12px; line-height:1.2; }
-
-  .booking-option-cta { font-size: 11px; }
 }
 
 .booking-modal-header {
