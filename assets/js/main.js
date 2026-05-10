@@ -147,7 +147,7 @@ if (menu && menuLinks) {
     document.body.style.paddingRight = '';
   }
 
-  document.querySelectorAll('.btn-book').forEach(function (btn) {
+  document.querySelectorAll('.btn-book, .btn-book-trigger').forEach(function (btn) {
     btn.addEventListener('click', openModal);
   });
 
