@@ -371,6 +371,12 @@ body {
   transition: all var(--duration-fast);
   margin-bottom: 2px;
   position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.sidebar-nav-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .sidebar-nav-item:hover {

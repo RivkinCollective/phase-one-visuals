@@ -258,20 +258,46 @@
       var errorEl = document.getElementById("passwordError");
       var submitBtn = document.getElementById("passwordSubmit");
 
-      sha256(input.value).then(function (hash) {
-        if (hash === PASSWORD_HASH) {
-          sessionStorage.setItem(SESSION_KEY, "1");
-          showUnlockedState();
-          setTimeout(function () { renderAllPackages(); window._packagesRendered = true; }, 600);
+      if (!input || !input.value) return;
+
+      function handleSuccess() {
+        sessionStorage.setItem(SESSION_KEY, "1");
+        showUnlockedState();
+        setTimeout(function () { renderAllPackages(); window._packagesRendered = true; }, 600);
+      }
+
+      function handleFailure() {
+        errorEl.style.display = "block";
+        errorEl.classList.remove("shake");
+        void errorEl.offsetWidth;
+        errorEl.classList.add("shake");
+        submitBtn.classList.add("btn-error");
+        setTimeout(function () { submitBtn.classList.remove("btn-error"); }, 600);
+      }
+
+      // Try SHA-256; fall back to plaintext if crypto API unavailable
+      if (typeof crypto !== 'undefined' && crypto.subtle) {
+        sha256(input.value).then(function (hash) {
+          if (hash === PASSWORD_HASH) {
+            handleSuccess();
+          } else {
+            handleFailure();
+          }
+        }).catch(function () {
+          // crypto failed — fall back to plaintext
+          if (input.value === "Benson123!") {
+            handleSuccess();
+          } else {
+            handleFailure();
+          }
+        });
+      } else {
+        if (input.value === "Benson123!") {
+          handleSuccess();
         } else {
-          errorEl.style.display = "block";
-          errorEl.classList.remove("shake");
-          void errorEl.offsetWidth;
-          errorEl.classList.add("shake");
-          submitBtn.classList.add("btn-error");
-          setTimeout(function () { submitBtn.classList.remove("btn-error"); }, 600);
+          handleFailure();
         }
-      });
+      }
     });
 
     document.querySelectorAll(".sidebar-nav-item").forEach(function (item) {
