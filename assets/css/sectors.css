@@ -112,28 +112,23 @@
     background: var(--gold);
     color: #fff;
     border: 2px solid var(--gold);
-    animation: ctaPulse 2.5s ease-in-out infinite;
+    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
   }
 
   .sector-cta--re:hover {
-    animation: none;
-    box-shadow: 0 0 48px rgba(200, 134, 26, 0.55), 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
     transform: translateY(-2px);
   }
 
   .sector-cta--cons {
-    background: #111111;
+    background: var(--gold);
     color: #fff;
     border: 2px solid var(--gold);
-    box-shadow: 0 0 24px rgba(200, 134, 26, 0.15), 0 2px 8px rgba(0,0,0,0.1);
-    animation: ctaPulse 2.5s ease-in-out infinite;
-    animation-delay: 0.8s;
+    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
   }
 
   .sector-cta--cons:hover {
-    animation: none;
-    box-shadow: 0 0 48px rgba(200, 134, 26, 0.4), 0 6px 20px rgba(0,0,0,0.15);
-    background: #1a1a1a;
+    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
     transform: translateY(-2px);
   }
 
