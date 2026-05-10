@@ -309,3 +309,21 @@ if (scrollTopBtn) {
     window.scrollTo({ top: top, behavior: 'smooth' });
   });
 })();
+
+// Google Places Autocomplete for construction form location
+(function initAddressAutocomplete() {
+  var locationInput = document.getElementById('cf-location');
+  if (!locationInput) return;
+  var check = setInterval(function () {
+    if (window.google && google.maps && google.maps.places) {
+      clearInterval(check);
+      var autocomplete = new google.maps.places.Autocomplete(locationInput, {
+        types: ['geocode'],
+        componentRestrictions: { country: 'us' }
+      });
+      autocomplete.setFields(['formatted_address', 'geometry']);
+    }
+  }, 300);
+  setTimeout(function () { clearInterval(check); }, 8000);
+})();
+})();
