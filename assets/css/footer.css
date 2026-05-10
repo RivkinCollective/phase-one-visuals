@@ -262,6 +262,47 @@ footer::before {
   }
 }
 
+/* ─── FOOTER SECRET TRIANGLE ─── */
+.footer-secret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.2;
+  color: #555;
+  transition: opacity 400ms ease, color 400ms ease, transform 400ms ease;
+  flex-shrink: 0;
+}
+
+.footer-secret svg {
+  display: block;
+}
+
+.footer-secret:hover {
+  opacity: 1;
+  color: var(--gold);
+  transform: scale(1.25);
+}
+
+.footer-secret:focus-visible {
+  opacity: 1;
+  color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@media (max-width: 597px) {
+  .footer-secret {
+    order: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-secret {
+    transition: none;
+  }
+}
+
 /* Minimum (320px) */
 @media (max-width: 320px) {
   .footer-col ul li a {
