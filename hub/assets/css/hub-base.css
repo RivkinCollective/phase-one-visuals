@@ -41,6 +41,27 @@
   --topbar-height: 64px;
 }
 
+[data-theme="dark"] {
+  --black: #F8F6F2;
+  --charcoal: #E8E0D4;
+  --slate: #AAAAAA;
+  --mist: #1A1A1A;
+  --white: #111111;
+  --divider: #2A2A2A;
+  --gold-pale: #2A241A;
+  --canvas-bg: #111111;
+  --canvas-text: #e0e0e0;
+  --canvas-muted: #888;
+  --card-bg: #1A1A1A;
+  --card-border: #2A2A2A;
+  --card-hover-border: rgba(200, 134, 26, 0.3);
+  --input-bg: #1A1A1A;
+  --input-border: #2A2A2A;
+  --glass-bg: rgba(17, 17, 17, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --sidebar-bg: #0d0d0d;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

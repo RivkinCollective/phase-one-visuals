@@ -202,10 +202,16 @@
     updateOrderSummary();
   }
 
+  var savedPackageIndex = -1;
+
   function toggleAddonsOnly() {
     state.addonsOnly = getEl('addonsOnly').checked;
     if (state.addonsOnly) {
+      savedPackageIndex = state.selectedPackageIndex;
       state.selectedPackageIndex = -1;
+    } else {
+      state.selectedPackageIndex = savedPackageIndex;
+      savedPackageIndex = -1;
     }
 
     document.querySelectorAll('.package-card').forEach(function (el, i) {
@@ -214,6 +220,9 @@
         el.classList.add('disabled');
       } else {
         el.classList.remove('disabled');
+        if (i === state.selectedPackageIndex) {
+          el.classList.add('selected');
+        }
       }
     });
 
@@ -406,6 +415,7 @@
   function resetForm() {
     state.selectedCategory = null;
     state.selectedPackageIndex = -1;
+    savedPackageIndex = -1;
     state.addonsOnly = false;
     state.selectedAddons = {};
     state.currentPricing = [];
@@ -462,5 +472,31 @@
   window.resetForm = resetForm;
 
   document.addEventListener('DOMContentLoaded', init);
+
+  // ─── THEME TOGGLE ───
+  (function initTheme() {
+    var saved = localStorage.getItem('theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+
+
 
 })();
