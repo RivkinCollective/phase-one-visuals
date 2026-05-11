@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── PUBLIC COLLECTIONS (read-only for pricing/site content) ───
+    match /pricing/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /site_content/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // ─── GALLERIES (public read by ID, admin write) ───
+    match /galleries/{galleryId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    // ─── HUB ORDERS (public create, admin read/write) ───
+    match /hub_orders/{orderId} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    // ─── HUB MEDIA (public read metadata, admin write) ───
+    match /hub_media/{mediaId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    // ─── HUB CLIENTS (admin only) ───
+    match /hub_clients/{clientId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ─── HUB PROJECTS (admin only) ───
+    match /hub_projects/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ─── LEADS (public create, admin read/write) ───
+    match /leads/{leadId} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    // ─── DEFAULT DENY for unmatched collections ───
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

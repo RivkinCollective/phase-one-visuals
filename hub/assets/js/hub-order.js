@@ -304,6 +304,22 @@
       return;
     }
 
+    // ─── RATE LIMITING: max 3 orders per 10 minutes per browser ───
+    var RL_KEY = 'p1hub_order_timestamps';
+    var RL_WINDOW = 10 * 60 * 1000; // 10 minutes
+    var RL_MAX = 3;
+    var now = Date.now();
+    var timestamps = [];
+    try {
+      var stored = sessionStorage.getItem(RL_KEY);
+      if (stored) timestamps = JSON.parse(stored);
+    } catch (e) {}
+    timestamps = timestamps.filter(function (t) { return now - t < RL_WINDOW; });
+    if (timestamps.length >= RL_MAX) {
+      alert('Too many orders in a short period. Please wait a few minutes and try again.');
+      return;
+    }
+
     var clientName = getEl('clientName').value.trim();
     var clientEmail = getEl('clientEmail').value.trim();
     var clientPhone = getEl('clientPhone').value.trim();
@@ -369,6 +385,8 @@
 
     if (STRIPE_KEY === 'pk_test_placeholder') {
       db.collection('hub_orders').add(orderData).then(function () {
+        timestamps.push(Date.now());
+        try { sessionStorage.setItem(RL_KEY, JSON.stringify(timestamps)); } catch (e) {}
         showSuccess(orderData);
       }).catch(function (err) {
         alert('Error saving order: ' + err.message);
@@ -380,6 +398,8 @@
     } else {
       var amount = isDeposit ? deposit : total;
       db.collection('hub_orders').add(orderData).then(function (docRef) {
+        timestamps.push(Date.now());
+        try { sessionStorage.setItem(RL_KEY, JSON.stringify(timestamps)); } catch (e) {}
         orderData.id = docRef.id;
         showSuccess(orderData);
       }).catch(function (err) {
