@@ -271,47 +271,19 @@ nav > a:has(.nav-logo-text) {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 320px;
+    width: 300px;
     height: 100vh;
     height: 100dvh;
     background: var(--white);
-    border-left: 2px solid var(--gold);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 48px 20px;
-    gap: 6px;
+    padding: 64px 32px;
+    gap: 4px;
     z-index: 1000;
-    transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: -4px 0 24px rgba(0,0,0,0.06);
-  }
-
-  .nav-links::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at 80% 20%, rgba(200,134,26,0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .nav-links::after {
-    content: 'PHASE ONE\nVISUALS';
-    white-space: pre;
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--slate);
-    opacity: 0.3;
-    text-align: center;
-    line-height: 1.4;
+    transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 1px solid var(--divider);
   }
 
   [data-theme="dark"] .nav-links {
@@ -320,14 +292,14 @@ nav > a:has(.nav-logo-text) {
 
   .nav-links.active {
     right: 0;
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.10);
   }
 
   .nav-links li {
     width: 100%;
     opacity: 0;
-    transform: translateX(16px);
-    transition: all 0.4s ease;
+    transform: translateX(12px);
+    transition: all 0.35s ease;
     text-align: center;
   }
 
@@ -336,65 +308,39 @@ nav > a:has(.nav-logo-text) {
     transform: translateX(0);
   }
 
-  .nav-links.active li:nth-child(1) { transition-delay: 0.08s; }
-  .nav-links.active li:nth-child(2) { transition-delay: 0.14s; }
-  .nav-links.active li:nth-child(3) { transition-delay: 0.20s; }
-  .nav-links.active li:nth-child(4) { transition-delay: 0.26s; }
-  .nav-links.active li:nth-child(5) { transition-delay: 0.32s; }
+  .nav-links.active li:nth-child(1) { transition-delay: 0.06s; }
+  .nav-links.active li:nth-child(2) { transition-delay: 0.12s; }
+  .nav-links.active li:nth-child(3) { transition-delay: 0.18s; }
+  .nav-links.active li:nth-child(4) { transition-delay: 0.24s; }
+  .nav-links.active li:nth-child(5) { transition-delay: 0.30s; }
 
   .nav-links a:not(.pov-btn) {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
     gap: 14px;
-    padding: 20px 24px;
-    font-size: 21px;
+    padding: 14px 20px;
+    font-size: 20px;
     font-family: var(--serif);
-    font-weight: 800;
-    color: var(--charcoal);
-    border-radius: 14px;
-    border: 1.5px solid transparent;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    color: var(--black);
+    border-radius: 10px;
+    letter-spacing: 0;
     width: 100%;
-    min-height: 64px;
-    background: transparent;
-    transition: color 0.25s, background 0.25s, border-color 0.25s, box-shadow 0.25s;
-    position: relative;
+    transition: color 0.2s, background 0.2s;
   }
 
   .nav-links a:not(.pov-btn):hover {
     color: var(--gold);
     background: var(--gold-pale);
-    border-color: var(--gold-border);
-    box-shadow: 0 2px 12px rgba(200, 134, 26, 0.08);
-  }
-
-  .nav-links li:nth-child(odd) a:not(.pov-btn) {
-    background: rgba(200, 134, 26, 0.02);
-  }
-
-  .nav-links li:nth-child(odd) a:not(.pov-btn):hover {
-    background: var(--gold-pale);
-  }
-
-  [data-theme="dark"] .nav-links li:nth-child(odd) a:not(.pov-btn) {
-    background: rgba(200, 134, 26, 0.04);
   }
 
   .nav-links .nav-icon {
-    width: 22px;
-    height: 22px;
-    opacity: 0.65;
-    transform: none;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
     margin-right: 0;
-    transition: opacity 0.25s, color 0.25s, transform 0.25s;
     flex-shrink: 0;
     color: var(--gold);
-  }
-
-  .nav-links a:not(.pov-btn):hover .nav-icon {
-    opacity: 1;
-    transform: scale(1.1);
   }
 
   #nav-rspn-btn {
@@ -464,26 +410,18 @@ nav > a:has(.nav-logo-text) {
 
   .nav-links {
     width: 100%;
-    padding: 40px 16px;
-    gap: 4px;
+    padding: 40px 24px;
+    gap: 2px;
   }
 
   .nav-links a:not(.pov-btn) {
     font-size: 18px;
-    padding: 16px 20px;
-    min-height: 56px;
-    gap: 12px;
+    padding: 14px 20px;
   }
 
   .nav-links .nav-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .nav-links::after {
-    bottom: 24px;
-    font-size: 9px;
-    letter-spacing: 3px;
+    width: 18px;
+    height: 18px;
   }
 }
 
