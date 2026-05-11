@@ -4,10 +4,10 @@ nav {
   left: 0;
   right: 0;
   height: 68px;
-  background: var(--nav-bg);
+  background: rgba(17, 17, 17, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid #2A2A2A;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
@@ -52,7 +52,7 @@ nav > a:has(.nav-logo-text) {
   font-family: 'Montserrat', sans-serif;
   font-size: 22px;
   text-transform: uppercase;
-  color: var(--black);
+  color: #F8F6F2;
   font-weight: 700;
   letter-spacing: 0.12em;
   transition: color 0.4s;
@@ -79,7 +79,7 @@ nav > a:has(.nav-logo-text) {
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  color: var(--slate);
+  color: #AAAAAA;
   letter-spacing: 0.3px;
   padding: 6px 14px;
   border-radius: 100px;
@@ -89,6 +89,12 @@ nav > a:has(.nav-logo-text) {
   gap: 0;
   transition: color 0.25s, background 0.25s, border-color 0.25s;
   white-space: nowrap;
+}
+
+.nav-links a:not(.pov-btn):hover {
+  color: #F8F6F2;
+  background: #1A1A1A;
+  border-color: #2A2A2A;
 }
 
 .nav-icon {
@@ -137,8 +143,8 @@ nav > a:has(.nav-logo-text) {
 /* Theme toggle */
 .theme-toggle {
   background: transparent;
-  border: 1px solid var(--divider);
-  color: var(--black);
+  border: 1px solid #3A3A3A;
+  color: #F8F6F2;
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -150,7 +156,7 @@ nav > a:has(.nav-logo-text) {
 }
 
 .theme-toggle:hover {
-  background: var(--mist);
+  background: #1A1A1A;
   border-color: var(--gold);
   color: var(--gold);
   transform: translateY(-2px);
@@ -185,13 +191,13 @@ nav > a:has(.nav-logo-text) {
 }
 
 .menu-toggle:hover {
-  background: var(--mist);
+  background: #1A1A1A;
 }
 
 .bar {
   width: 20px;
   height: 2px;
-  background-color: var(--black);
+  background-color: #F8F6F2;
   display: block;
   transition: all 0.3s ease-in-out;
   border-radius: 10px;
@@ -274,7 +280,7 @@ nav > a:has(.nav-logo-text) {
     width: 300px;
     height: 100vh;
     height: 100dvh;
-    background: var(--white);
+    background: #0d0d0d;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -283,11 +289,7 @@ nav > a:has(.nav-logo-text) {
     gap: 4px;
     z-index: 1000;
     transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    border-left: 1px solid var(--divider);
-  }
-
-  [data-theme="dark"] .nav-links {
-    background: #0d0d0d;
+    border-left: 1px solid #2A2A2A;
   }
 
   .nav-links.active {
@@ -322,7 +324,7 @@ nav > a:has(.nav-logo-text) {
     font-size: 20px;
     font-family: var(--serif);
     font-weight: 700;
-    color: var(--black);
+    color: #F8F6F2;
     border-radius: 10px;
     letter-spacing: 0;
     width: 100%;
