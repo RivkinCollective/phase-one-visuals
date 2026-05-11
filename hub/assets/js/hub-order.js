@@ -174,7 +174,10 @@
       if (!priceEl) return;
       var pricing = state.currentPricing[idx];
       priceEl.textContent = formatPrice(pricing.price);
-      if (sqVal === '' || isNaN(parseInt(sqVal))) {
+      var isConstruction = state.selectedCategory === 'construction';
+      if (isConstruction) {
+        hintEl.textContent = '';
+      } else if (sqVal === '' || isNaN(parseInt(sqVal))) {
         hintEl.textContent = 'Enter square footage above for exact pricing';
       } else {
         hintEl.textContent = '';

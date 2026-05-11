@@ -249,6 +249,8 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   cursor: pointer;
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .package-card:hover {
   border-color: var(--gold);
@@ -351,6 +353,7 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   font-size: 28px;
   font-weight: 700;
   color: var(--black);
+  margin-top: auto;
 }
 .package-card-price-hint {
   display: block;
