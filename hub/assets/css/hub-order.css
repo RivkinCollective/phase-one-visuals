@@ -237,7 +237,8 @@ html, .order-page { overflow: visible !important; height: auto !important; }
 .contact-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 
 /* ─── PACKAGE CARDS (4-col) ─── */
-.package-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.package-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; justify-content: center; }
+.package-grid:has(.package-card:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 280px)); justify-content: center; }
 
 .package-card {
   background: var(--white);
@@ -592,6 +593,7 @@ html, .order-page { overflow: visible !important; height: auto !important; }
 /* ─── RESPONSIVE ─── */
 @media (max-width: 1200px) {
   .package-grid { grid-template-columns: repeat(2, 1fr); }
+  .package-grid:has(.package-card:nth-child(3):last-child) { grid-template-columns: repeat(2, minmax(0, 280px)); justify-content: center; }
 }
 
 @media (max-width: 1024px) {
@@ -603,6 +605,7 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   .category-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .category-card { padding: 24px 16px 20px; }
   .package-grid { grid-template-columns: repeat(2, 1fr); }
+  .package-grid:has(.package-card:nth-child(3):last-child) { grid-template-columns: repeat(2, minmax(0, 280px)); justify-content: center; }
   .order-main { padding: 28px 24px; }
 }
 
@@ -611,7 +614,8 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   .category-card { display: flex; align-items: center; gap: 16px; text-align: left; padding: 20px; }
   .category-card-icon { margin: 0; width: 44px; height: 44px; flex-shrink: 0; }
   .category-card-desc { margin: 0; max-width: none; }
-  .package-grid { grid-template-columns: 1fr; }
+  .package-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+  .package-grid:has(.package-card:nth-child(3):last-child) { grid-template-columns: 1fr; }
   .property-fields { grid-template-columns: 1fr; }
   .contact-fields { grid-template-columns: 1fr; }
   .addon-grid { grid-template-columns: 1fr; }
