@@ -85,15 +85,44 @@
     margin-top: auto;
   }
 
-  .sector-cta::after {
-    content: '→';
-    display: inline-block;
-    font-size: 14px;
-    transition: transform 0.3s ease;
+  .sector-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
   }
 
-  .sector-cta:hover::after {
-    animation: ctaArrow 0.5s ease infinite;
+  .sector-cta--re {
+    background: var(--gold);
+    color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .sector-cta--re:hover {
+    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  .sector-cta--cons {
+    background: var(--gold);
+    color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .sector-cta--cons:hover {
+    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
   }
 
   .sector-panel.real-estate h2 {
