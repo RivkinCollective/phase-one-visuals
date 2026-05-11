@@ -3,22 +3,6 @@
     padding: 0;
   }
 
-  .sector-ctas {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    padding: 40px 20px;
-    grid-column: 1 / -1;
-    background: var(--white);
-  }
-
-  @media (max-width: 600px) {
-    .sector-ctas {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
   .sectors em {
     font-style: italic;
     color: var(--gold);
@@ -31,7 +15,7 @@
   }
 
   .sector-panel {
-    padding: 60px;
+    padding: 60px 60px 48px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -99,6 +83,8 @@
     border-radius: 8px;
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    margin-top: auto;
+    align-self: center;
   }
 
   .sector-cta--re {
