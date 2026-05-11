@@ -3,6 +3,22 @@
     padding: 0;
   }
 
+  .sector-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 20px;
+    grid-column: 1 / -1;
+    background: var(--white);
+  }
+
+  @media (max-width: 600px) {
+    .sector-ctas {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
   .sectors em {
     font-style: italic;
     color: var(--gold);
@@ -78,69 +94,6 @@
 
   .sector-cta:hover::after {
     animation: ctaArrow 0.5s ease infinite;
-  }
-
-  @keyframes ctaArrow {
-    0%, 100% { transform: translateX(0); }
-    50%      { transform: translateX(4px); }
-  }
-
-  .sector-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 32px;
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: 28px;
-    transition: background 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-    align-self: center;
-  }
-
-  @keyframes ctaArrow {
-    0%, 100% { transform: translateX(0); }
-    50%      { transform: translateX(4px); }
-  }
-
-  .sector-cta::after {
-    content: '→';
-    display: inline-block;
-    font-size: 14px;
-    transition: transform 0.3s ease;
-  }
-
-  .sector-cta:hover::after {
-    animation: ctaArrow 0.5s ease infinite;
-  }
-
-  .sector-cta--re {
-    background: var(--gold);
-    color: #fff;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .sector-cta--re:hover {
-    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
-    transform: translateY(-2px);
-  }
-
-  .sector-cta--cons {
-    background: var(--gold);
-    color: #fff;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 24px rgba(200, 134, 26, 0.3), 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .sector-cta--cons:hover {
-    box-shadow: 0 0 48px rgba(200, 134, 26, 0.5), 0 6px 20px rgba(0,0,0,0.15);
-    transform: translateY(-2px);
   }
 
   .sector-panel.real-estate h2 {
