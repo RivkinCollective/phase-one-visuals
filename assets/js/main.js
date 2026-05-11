@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
       } catch (error) {
         console.error("Error submitting construction inquiry: ", error);
-        var errMsg = "Something went wrong. Please try again or call (609) 429-0312.";
+        var errMsg = "Something went wrong. Please try again or email info@phaseonevisuals.com.";
         if (error && error.code === 'permission-denied') {
-          errMsg = "Submission blocked by security rules. Please try again later or call (609) 429-0312.";
+          errMsg = "Submission blocked by security rules. Please try again later or email info@phaseonevisuals.com.";
         } else if (error && error.message) {
-          errMsg = error.message + " Please try again or call (609) 429-0312.";
+          errMsg = error.message + " Please try again or email info@phaseonevisuals.com.";
         }
         alert(errMsg);
         submitBtn.disabled = false;
