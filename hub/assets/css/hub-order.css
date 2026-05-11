@@ -247,7 +247,7 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   padding: 28px 20px 44px;
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
+  transition: border-color 0.12s, box-shadow 0.12s, transform 0.2s, background 0.12s;
   position: relative;
   display: flex;
   flex-direction: column;
