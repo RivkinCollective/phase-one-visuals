@@ -15,7 +15,7 @@ service cloud.firestore {
     // ─── GALLERIES (public read by ID, admin write) ───
     match /galleries/{galleryId} {
       allow read: if true;
-      allow create, update, delete: if true;
+      allow create, update, delete: if request.auth != null;
     }
 
     // ─── HUB ORDERS (public create, admin read/write) ───

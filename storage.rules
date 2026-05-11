@@ -5,7 +5,7 @@ service firebase.storage {
     // ─── GALLERY MEDIA — public read, authenticated write ───
     match /galleries/{galleryId}/{fileName} {
       allow read: if true;
-      allow create, update, delete: if true;
+      allow create, update, delete: if request.auth != null;
     }
 
     // ─── PROJECT FILES — public read, authenticated write ───
