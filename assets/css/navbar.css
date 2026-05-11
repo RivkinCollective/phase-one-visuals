@@ -280,11 +280,11 @@ nav > a:has(.nav-logo-text) {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 60px 28px;
-    gap: 12px;
+    padding: 48px 20px;
+    gap: 6px;
     z-index: 1000;
     transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: none;
+    box-shadow: -4px 0 24px rgba(0,0,0,0.06);
   }
 
   .nav-links::before {
@@ -294,8 +294,24 @@ nav > a:has(.nav-logo-text) {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at 80% 20%, rgba(200,134,26,0.04) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 80% 20%, rgba(200,134,26,0.05) 0%, transparent 50%);
     pointer-events: none;
+  }
+
+  .nav-links::after {
+    content: 'PHASE ONE\nVISUALS';
+    white-space: pre;
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--slate);
+    opacity: 0.3;
+    text-align: center;
+    line-height: 1.4;
   }
 
   [data-theme="dark"] .nav-links {
@@ -304,7 +320,7 @@ nav > a:has(.nav-logo-text) {
 
   .nav-links.active {
     right: 0;
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
   }
 
   .nav-links li {
@@ -330,17 +346,19 @@ nav > a:has(.nav-logo-text) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 18px 24px;
-    font-size: 20px;
+    gap: 14px;
+    padding: 20px 24px;
+    font-size: 21px;
     font-family: var(--serif);
-    font-weight: 700;
-    color: var(--black);
-    border-radius: 12px;
-    border: 1px solid transparent;
-    letter-spacing: 0;
+    font-weight: 800;
+    color: var(--charcoal);
+    border-radius: 14px;
+    border: 1.5px solid transparent;
+    letter-spacing: -0.01em;
     width: 100%;
-    transition: color 0.25s, background 0.25s, border-color 0.25s;
+    min-height: 64px;
+    background: transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s, box-shadow 0.25s;
     position: relative;
   }
 
@@ -348,21 +366,35 @@ nav > a:has(.nav-logo-text) {
     color: var(--gold);
     background: var(--gold-pale);
     border-color: var(--gold-border);
+    box-shadow: 0 2px 12px rgba(200, 134, 26, 0.08);
+  }
+
+  .nav-links li:nth-child(odd) a:not(.pov-btn) {
+    background: rgba(200, 134, 26, 0.02);
+  }
+
+  .nav-links li:nth-child(odd) a:not(.pov-btn):hover {
+    background: var(--gold-pale);
+  }
+
+  [data-theme="dark"] .nav-links li:nth-child(odd) a:not(.pov-btn) {
+    background: rgba(200, 134, 26, 0.04);
   }
 
   .nav-links .nav-icon {
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
+    width: 22px;
+    height: 22px;
+    opacity: 0.65;
     transform: none;
     margin-right: 0;
-    transition: opacity 0.25s, color 0.25s;
+    transition: opacity 0.25s, color 0.25s, transform 0.25s;
     flex-shrink: 0;
     color: var(--gold);
   }
 
   .nav-links a:not(.pov-btn):hover .nav-icon {
     opacity: 1;
+    transform: scale(1.1);
   }
 
   #nav-rspn-btn {
@@ -432,18 +464,26 @@ nav > a:has(.nav-logo-text) {
 
   .nav-links {
     width: 100%;
-    padding: 40px 24px;
-    gap: 8px;
+    padding: 40px 16px;
+    gap: 4px;
   }
 
   .nav-links a:not(.pov-btn) {
     font-size: 18px;
-    padding: 14px 20px;
+    padding: 16px 20px;
+    min-height: 56px;
+    gap: 12px;
   }
 
   .nav-links .nav-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-links::after {
+    bottom: 24px;
+    font-size: 9px;
+    letter-spacing: 3px;
   }
 }
 
