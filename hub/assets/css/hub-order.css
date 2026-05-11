@@ -279,7 +279,7 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   white-space: nowrap;
 }
 .package-card.featured {
-  border-color: var(--gold);
+  border-color: var(--divider);
   background: var(--gold-pale);
 }
 .package-card.featured::before {
