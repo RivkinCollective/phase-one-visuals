@@ -102,6 +102,16 @@
     getEl('section-addons').style.display = 'block';
     getEl('section-contact').style.display = 'block';
 
+    var sqftField = getEl('sqftField');
+    if (sqftField) {
+      if (catId === 'construction') {
+        sqftField.style.display = 'none';
+        getEl('squareFootage').value = '';
+      } else {
+        sqftField.style.display = '';
+      }
+    }
+
     renderPackages(catId);
     renderAddons(catId);
     updatePricing();
@@ -435,6 +445,9 @@
     getEl('section-addons').style.display = 'none';
     getEl('section-contact').style.display = 'none';
     getEl('orderSuccess').style.display = 'none';
+
+    var sqftField = getEl('sqftField');
+    if (sqftField) sqftField.style.display = '';
     getEl('orderSummary').style.display = 'block';
 
     getEl('summaryEmpty').style.display = 'block';
