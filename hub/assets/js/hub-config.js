@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyBG5IqXi9ds5GAn0gOEB2xFIsQuUFivLYM",
-  authDomain: "phase-one-visual-web.firebaseapp.com",
-  projectId: "phase-one-visual-web",
-  storageBucket: "phase-one-visual-web.firebasestorage.app",
-  messagingSenderId: "1064324008256",
-  appId: "1:1064324008256:web:808b7fcb833493139b3e25"
+  apiKey: "AIzaSyBTDHLALaA_Jn2SsAEhJXcOvOyZMIeCG34",
+  authDomain: "phase-one-visuals.firebaseapp.com",
+  projectId: "phase-one-visuals",
+  storageBucket: "phase-one-visuals.firebasestorage.app",
+  messagingSenderId: "16706364965",
+  appId: "1:16706364965:web:a63a8917ab2b2cf48bc1cc"
 };
 
 if (!firebase.apps.length) {

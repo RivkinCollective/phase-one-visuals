@@ -1,16 +1,16 @@
-// Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBG5IqXi9ds5GAn0gOEB2xFIsQuUFivLYM",
-    authDomain: "phase-one-visual-web.firebaseapp.com",
-    projectId: "phase-one-visual-web",
-    storageBucket: "phase-one-visual-web.firebasestorage.app",
-    messagingSenderId: "984292050024",
-    appId: "1:984292050024:web:aa655e3f005b4cd857e7dd",
-    measurementId: "G-X16X214VFG"
+  apiKey: "AIzaSyBTDHLALaA_Jn2SsAEhJXcOvOyZMIeCG34",
+  authDomain: "phase-one-visuals.firebaseapp.com",
+  projectId: "phase-one-visuals",
+  storageBucket: "phase-one-visuals.firebasestorage.app",
+  messagingSenderId: "16706364965",
+  appId: "1:16706364965:web:a63a8917ab2b2cf48bc1cc"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
