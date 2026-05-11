@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://*.googleapis.com https://*.firebasestorage.app; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://*.googleapis.com https://*.firebasestorage.app https://*.r2.cloudflarestorage.com https://*.r2.dev; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firebasestorage.googleapis.com https://*.workers.dev https://*.r2.cloudflarestorage.com https://*.r2.dev; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
   <title>Phase One Admin — Photographer Upload</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -500,9 +500,42 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
   <script src="assets/js/hub-config.js"></script>
   <script>
+    var R2_WORKER_URL = 'https://phase-one-r2-upload.YOUR_SUBDOMAIN.workers.dev';
+    var R2_ADMIN_TOKEN = 'Benson123!';
+
+    async function uploadToR2(file, token) {
+      var presignUrl = R2_WORKER_URL + '/?filename=' + encodeURIComponent(file.name) + '&type=' + encodeURIComponent(file.type);
+      var presignResp = await fetch(presignUrl, {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      var presignData = await presignResp.json();
+
+      if (!presignData.uploadUrl) {
+        throw new Error('Failed to get upload URL');
+      }
+
+      var uploadResp = await fetch(presignData.uploadUrl, {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type
+        }
+      });
+
+      if (!uploadResp.ok) {
+        throw new Error('Upload failed: ' + uploadResp.status);
+      }
+
+      return {
+        url: presignData.publicUrl,
+        fileName: file.name,
+        type: file.type,
+        size: file.size
+      };
+    }
+
     (function () {
       var passGate = document.getElementById('passGate');
       var appDashboard = document.getElementById('appDashboard');
@@ -798,36 +831,24 @@
             var progressBar = previewItem ? previewItem.querySelector('.file-preview-progress-bar') : null;
             var statusEl = previewItem ? previewItem.querySelector('.file-preview-status') : null;
 
-            if (statusEl) statusEl.textContent = 'uploading';
+            if (statusEl) statusEl.textContent = 'presigning';
+            if (progressBar) progressBar.style.width = '20%';
 
-            var timestamp = Date.now();
-            var storagePath = 'galleries/' + galleryId + '/' + timestamp + '_' + file.name;
-            var uploadTask = storage.ref(storagePath).put(file);
+            try {
+              var entry = await uploadToR2(file, R2_ADMIN_TOKEN);
 
-            await new Promise(function (resolve, reject) {
-              uploadTask.on('state_changed',
-                function (snapshot) {
-                  var pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                  if (progressBar) progressBar.style.width = pct + '%';
-                },
-                function (error) {
-                  if (statusEl) { statusEl.textContent = 'failed'; statusEl.className = 'file-preview-status error'; }
-                  reject(error);
-                },
-                function () {
-                  uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
-                    var entry = { url: url, fileName: file.name, type: file.type };
-                    if (file.type.startsWith('image/')) {
-                      photos.push(entry);
-                    } else if (file.type.startsWith('video/')) {
-                      videos.push(entry);
-                    }
-                    if (statusEl) { statusEl.textContent = 'done'; statusEl.className = 'file-preview-status success'; }
-                    resolve();
-                  }).catch(reject);
-                }
-              );
-            });
+              if (progressBar) progressBar.style.width = '100%';
+              if (statusEl) { statusEl.textContent = 'done'; statusEl.className = 'file-preview-status success'; }
+
+              if (file.type.startsWith('image/')) {
+                photos.push(entry);
+              } else if (file.type.startsWith('video/')) {
+                videos.push(entry);
+              }
+            } catch (err) {
+              if (statusEl) { statusEl.textContent = 'failed'; statusEl.className = 'file-preview-status error'; }
+              throw err;
+            }
           }
 
           var price = document.getElementById('price').value.trim() || '0';
