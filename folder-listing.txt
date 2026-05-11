@@ -1,0 +1,18 @@
+I can see the folder structure at `c:\Rivkin's AI World\Zuhair - Phase One Visuals - AI`. Here's what's visible:
+
+**Files at root level:**
+- `.gitignore`
+- `.graphifyignore`
+- `CNAME`
+- `index.html`
+- `README.md`
+
+**Directories:**
+- `admin/` — contains `index.html`
+- `assets/` — contains `css/`, `fonts/`, `img/`, `js/` subdirectories
+- `obsidian-vault/` — contains `README.md`, `workflow.md`, `codebase-insights/`, `graphify-outputs/`, `openbrain-findings/`, `templates/`, `workflow-logs/`
+- `Phase One Visuals - AI [3-22-2026]/`
+
+The project appears to be a static website associated with the GitHub repository `https://github.com/RivkinCollective/phase-one-visuals.git`.
+
+Is there something specific you'd like me to look at or work on within this project?
