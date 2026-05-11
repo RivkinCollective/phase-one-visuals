@@ -83,7 +83,7 @@
     border-radius: 8px;
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    margin-top: auto;
+    margin: auto 0;
     align-self: center;
   }
 
