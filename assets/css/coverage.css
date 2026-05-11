@@ -12,8 +12,8 @@
 
 .coverage-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr;
+  gap: 48px;
   align-items: start;
 }
 
@@ -27,7 +27,7 @@
   background: var(--mist);
   border: 1px solid var(--divider);
   border-radius: 8px;
-  height: 400px;
+  height: 450px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -166,11 +166,11 @@
 @media (max-width: 1024px) {
 
   .coverage-inner {
-    gap: 48px;
+    gap: 36px;
   }
 
   .coverage-map {
-    height: 350px;
+    height: 380px;
   }
 
 }
@@ -180,14 +180,11 @@
 @media (max-width: 768px) {
 
   .coverage-inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 
   .coverage-map {
     height: 300px;
-    order: 2;
-    /* optional: puts map above text */
   }
 
   .coverage-content {
