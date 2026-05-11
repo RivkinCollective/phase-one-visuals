@@ -256,9 +256,27 @@ html, .order-page { overflow: visible !important; height: auto !important; }
   transform: translateY(-3px);
 }
 .package-card.selected {
-  border-color: var(--gold);
+  border-color: var(--black);
+  border-width: 2px;
   background: var(--gold-pale);
-  box-shadow: 0 0 0 3px var(--gold-pale), 0 0 32px rgba(200,134,26,0.2), 0 8px 28px rgba(0,0,0,0.08);
+  box-shadow: none;
+}
+.package-card.selected::after {
+  content: '✓ Selected';
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--montserrat);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
 }
 .package-card.featured {
   border-color: var(--gold);
