@@ -4,175 +4,208 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Phase One Hub</title>
+  <title>Order Services — Phase One Visuals</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/hub-base.css">
-  <link rel="stylesheet" href="assets/css/hub-dashboard.css">
+  <link rel="stylesheet" href="assets/css/hub-order.css">
 </head>
-<body>
+<body class="order-page">
 
-  <!-- ─── PASSWORD GATE (LOCKED STATE) ─── -->
-  <div class="pass-gate" id="passwordGate">
-    <div class="pass-gate-card">
-      <div class="pass-gate-emblem">
-        <svg viewBox="0 0 48 48" fill="none">
-          <polygon points="24,4 46,40 2,40" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-          <circle cx="24" cy="26" r="4" fill="currentColor" opacity="0.3"/>
-          <circle cx="24" cy="26" r="2" fill="#0d0d0d"/>
-        </svg>
-      </div>
-      <h2 class="pass-gate-title">Phase One Hub</h2>
-      <p class="pass-gate-subtitle">Enter your access key to continue</p>
-      <form id="passwordForm" autocomplete="off">
-        <div class="pass-gate-group">
-          <input type="password" id="passwordInput" class="pass-gate-input" placeholder="Access Key" required autofocus>
-        </div>
-        <button type="submit" id="passwordSubmit" class="pass-gate-btn">Enter</button>
-      </form>
-      <p class="pass-gate-error" id="passwordError">Incorrect access key. Try again.</p>
-      <p class="pass-gate-hint">Authorized personnel only</p>
-    </div>
-  </div>
-
-  <!-- ─── DASHBOARD (UNLOCKED STATE) ─── -->
-  <div class="app-dashboard" id="appDashboard">
-
-    <header class="topbar">
-      <div class="topbar-brand">
-        <svg class="topbar-brand-icon" viewBox="0 0 40 40" fill="none">
+  <!-- ─── HEADER ─── -->
+  <header class="order-header">
+    <div class="order-header-inner">
+      <a href="../index.html" class="order-brand" title="Back to Phase One Visuals">
+        <svg class="order-brand-icon" viewBox="0 0 40 40" fill="none">
           <polygon points="20,3 38,33 2,33" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           <circle cx="20" cy="21" r="3" fill="currentColor" opacity="0.3"/>
-          <circle cx="20" cy="21" r="1.5" fill="#0d0d0d"/>
+          <circle cx="20" cy="21" r="1.5" fill="#F8F6F2"/>
         </svg>
-        <h1>Phase One Hub</h1>
-      </div>
-      <div class="topbar-actions">
-        <button class="topbar-logout" id="btnLogout">Logout</button>
-      </div>
-    </header>
+        <span class="order-brand-text">
+          <span class="order-brand-line1">Phase One</span>
+          <span class="order-brand-line2">Visuals</span>
+        </span>
+      </a>
+      <h1 class="order-title">Order Services</h1>
+    </div>
+  </header>
 
-    <div class="hub-body">
+  <main class="order-main">
+    <div class="order-layout">
 
-      <aside class="sidebar">
-        <span class="sidebar-section-label">Navigation</span>
-        <nav>
-          <ul class="sidebar-nav">
-            <li class="sidebar-nav-item active" data-tab="packages">
-              <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                <rect x="14" y="14" width="7" height="7" rx="1"/>
-              </svg>
-              Packages
-            </li>
-            <li class="sidebar-nav-item" data-tab="upload">
-              <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="17 8 12 3 7 8"/>
-                <line x1="12" y1="3" x2="12" y2="15"/>
-              </svg>
-              Upload
-            </li>
-            <li class="sidebar-nav-item" data-tab="projects">
-              <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-              </svg>
-              Projects
-            </li>
-          </ul>
-        </nav>
+      <!-- ─── LEFT CONTENT COLUMN ─── -->
+      <div class="order-content">
+
+        <!-- Section 1: Category Selector -->
+        <section class="order-section" id="section-category">
+          <div class="section-label">Step 1</div>
+          <h2 class="section-heading">Select Your Service Category</h2>
+          <div class="category-grid" id="categoryGrid">
+            <div class="category-card" data-cat="residential" onclick="selectCategory('residential')">
+              <div class="category-card-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <h3 class="category-card-name">Residential</h3>
+              <p class="category-card-desc">Real estate listing photography for realtors and homeowners.</p>
+            </div>
+            <div class="category-card" data-cat="str" onclick="selectCategory('str')">
+              <div class="category-card-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="6" width="22" height="13" rx="2"/>
+                  <path d="M7 19v-13"/>
+                  <path d="M17 19v-13"/>
+                  <path d="M9 12h6"/>
+                </svg>
+              </div>
+              <h3 class="category-card-name">Short-Term Rental</h3>
+              <p class="category-card-desc">Airbnb / VRBO hospitality media for vacation properties.</p>
+            </div>
+            <div class="category-card" data-cat="construction" onclick="selectCategory('construction')">
+              <div class="category-card-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="15" rx="2"/>
+                  <path d="M17 2v5"/>
+                  <path d="M7 2v5"/>
+                  <path d="M2 7h20"/>
+                  <line x1="10" y1="16" x2="10" y2="22"/>
+                  <line x1="14" y1="16" x2="14" y2="22"/>
+                </svg>
+              </div>
+              <h3 class="category-card-name">Construction</h3>
+              <p class="category-card-desc">Progress documentation for builders and developers.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Property Details -->
+        <section class="order-section" id="section-property" style="display:none">
+          <div class="section-label">Step 2</div>
+          <h2 class="section-heading">Property Details</h2>
+          <div class="property-fields">
+            <div class="order-field">
+              <label for="propertyAddress">Property Address</label>
+              <input type="text" id="propertyAddress" class="order-input" placeholder="123 Main Street, Hopewell, NJ" autocomplete="off" oninput="updatePricing()">
+            </div>
+            <div class="order-field">
+              <label for="squareFootage">Square Footage <span class="field-hint">— drives package pricing</span></label>
+              <input type="number" id="squareFootage" class="order-input" placeholder="2,500" min="0" step="1" autocomplete="off" oninput="updatePricing()">
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Package Selection -->
+        <section class="order-section" id="section-packages" style="display:none">
+          <div class="section-label">Step 3</div>
+          <h2 class="section-heading">Select Your Package</h2>
+          <div class="package-grid" id="packageGrid"></div>
+          <div class="addons-only-wrap">
+            <label class="addons-only-label" id="addonsOnlyLabel">
+              <input type="checkbox" id="addonsOnly" onchange="toggleAddonsOnly()">
+              <span class="addons-only-text">I only need add-on services (no base package)</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Section 4: Add-On Services -->
+        <section class="order-section" id="section-addons" style="display:none">
+          <div class="section-label">Step 4</div>
+          <h2 class="section-heading">Add-On Services</h2>
+          <div class="addon-grid" id="addonGrid"></div>
+        </section>
+
+        <!-- Section 5: Contact & Submit -->
+        <section class="order-section" id="section-contact" style="display:none">
+          <div class="section-label">Step 5</div>
+          <h2 class="section-heading">Your Information</h2>
+          <div class="contact-fields">
+            <div class="order-field">
+              <label for="clientName">Full Name <span class="field-req">*</span></label>
+              <input type="text" id="clientName" class="order-input" placeholder="Jane Smith" autocomplete="off" required>
+            </div>
+            <div class="order-field">
+              <label for="clientEmail">Email <span class="field-req">*</span></label>
+              <input type="email" id="clientEmail" class="order-input" placeholder="jane@email.com" autocomplete="off" required>
+            </div>
+            <div class="order-field">
+              <label for="clientPhone">Phone</label>
+              <input type="tel" id="clientPhone" class="order-input" placeholder="(609) 555-0123" autocomplete="off">
+            </div>
+          </div>
+          <div class="order-field order-field--full">
+            <label for="orderNotes">Special Instructions or Notes</label>
+            <textarea id="orderNotes" class="order-input order-textarea" placeholder="Any specific requests, access instructions, preferred dates or times..." rows="3"></textarea>
+          </div>
+        </section>
+
+        <!-- Success Message -->
+        <div class="order-success" id="orderSuccess" style="display:none">
+          <div class="order-success-card">
+            <svg class="order-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <h3 class="order-success-title">Order Confirmed!</h3>
+            <p class="order-success-text">We'll contact you within 24 hours to schedule your shoot. Your photos will be delivered via a private gallery link after completion.</p>
+            <div class="order-success-details" id="successOrderDetails"></div>
+            <button class="order-btn order-btn--outline" onclick="resetForm()">Place Another Order</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── RIGHT SIDEBAR: Order Summary ─── -->
+      <aside class="order-summary" id="orderSummary">
+        <div class="order-summary-inner">
+          <h3 class="order-summary-title">Order Summary</h3>
+
+          <div class="order-summary-empty" id="summaryEmpty">
+            <p>Select a category and package to get started.</p>
+          </div>
+
+          <div class="order-summary-lines" id="summaryLines" style="display:none">
+            <div class="summary-line" id="summaryPackage" style="display:none">
+              <span class="summary-line-label" id="summaryPackageName"></span>
+              <span class="summary-line-price" id="summaryPackagePrice"></span>
+            </div>
+            <div class="summary-addons" id="summaryAddons"></div>
+            <div class="summary-divider"></div>
+            <div class="summary-line summary-line--total">
+              <span>Subtotal</span>
+              <span class="summary-line-price" id="summarySubtotal">$0</span>
+            </div>
+            <div class="summary-line summary-line--deposit" id="summaryDepositLine" style="display:none">
+              <span>Deposit (50%)</span>
+              <span class="summary-line-price" id="summaryDeposit">$0</span>
+            </div>
+          </div>
+
+          <div class="order-summary-actions" id="summaryActions">
+            <button class="order-btn order-btn--gold" id="btnPayDeposit" onclick="submitOrder(true)" disabled>
+              Pay Deposit (50%)
+            </button>
+            <button class="order-btn order-btn--dark" id="btnPayFull" onclick="submitOrder(false)" disabled>
+              Pay in Full
+            </button>
+          </div>
+
+          <p class="order-summary-stripe-note" id="stripeNote">
+            <!-- note injected by JS -->
+          </p>
+        </div>
       </aside>
 
-      <main class="main-content">
-
-        <!-- Packages Tab -->
-        <div class="tab-panel active" id="tab-packages">
-          <div id="packages-residential"></div>
-          <div id="packages-str"></div>
-          <div id="packages-construction"></div>
-        </div>
-
-        <!-- Upload Tab -->
-         <div class="tab-panel" id="tab-upload">
-          <div class="upload-section">
-            <h2 class="upload-title">Upload Media</h2>
-            <p class="upload-subtitle">Drag and drop photos or videos to stage them for upload.</p>
-            <input type="text" id="projectNameInput" class="upload-project-name" placeholder="Project name (e.g. 123 Main St)" autocomplete="off">
-            <div class="upload-dropzone" id="uploadDropZone">
-              <svg class="upload-dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="17 8 12 3 7 8"/>
-                <line x1="12" y1="3" x2="12" y2="15"/>
-              </svg>
-              <p class="upload-dropzone-text">Drag &amp; drop photos or click to browse</p>
-              <p class="upload-dropzone-hint">Supports JPG, PNG, MP4 — up to 100MB per file</p>
-              <input type="file" id="fileInput" accept="image/*,video/*" multiple>
-            </div>
-            <div class="upload-preview" id="uploadPreview"></div>
-            <button class="upload-btn" id="btnUpload">Upload to Firebase</button>
-          </div>
-        </div>
-
-        <!-- Projects Tab -->
-        <div class="tab-panel" id="tab-projects">
-          <div class="projects-toolbar">
-            <h2 class="projects-section-title">Projects</h2>
-            <button class="projects-new-btn" id="btnNewProject">+ New Project</button>
-          </div>
-          <div class="projects-list" id="projectsList"></div>
-          <div class="projects-empty" id="projectsEmpty">
-            <svg class="projects-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-            </svg>
-            <h2>No projects yet</h2>
-            <p>Create your first project to get started.</p>
-            <button class="projects-empty-btn" id="btnNewProjectEmpty">New Project</button>
-          </div>
-
-          <!-- New Project Modal -->
-          <div class="modal-overlay" id="projectModal" style="display:none">
-            <div class="modal-card">
-              <div class="modal-header">
-                <h3 id="projectModalTitle">New Project</h3>
-                <button class="modal-close" id="btnCloseProjectModal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <label class="modal-label">Project Name</label>
-                <input type="text" id="inputProjectName" class="form-input-dark" placeholder="e.g. 123 Main Street" autocomplete="off">
-                <label class="modal-label">Client Name</label>
-                <input type="text" id="inputClientName" class="form-input-dark" placeholder="e.g. Jane Smith" autocomplete="off">
-                <label class="modal-label">Client Email</label>
-                <input type="email" id="inputClientEmail" class="form-input-dark" placeholder="client@email.com" autocomplete="off">
-                <label class="modal-label">Price (USD, 0 for free access)</label>
-                <input type="number" id="inputProjectPrice" class="form-input-dark" placeholder="0.00" min="0" step="0.01" value="0">
-                <label class="modal-label">Expires In (days, 0 for no expiry)</label>
-                <input type="number" id="inputProjectExpiry" class="form-input-dark" placeholder="180" min="0" value="180">
-                <label class="modal-label">Stripe Payment Link (optional)</label>
-                <input type="url" id="inputStripeLink" class="form-input-dark" placeholder="https://buy.stripe.com/..." autocomplete="off">
-              </div>
-              <div class="modal-footer">
-                <button class="modal-btn-cancel" id="btnCancelProject">Cancel</button>
-                <button class="modal-btn-save" id="btnSaveProject">Create Project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </main>
     </div>
-  </div>
+  </main>
 
   <!-- Firebase Core SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script src="assets/js/hub-config.js"></script>
-  <script src="assets/js/hub-payment.js"></script>
-  <script src="assets/js/hub-dashboard.js"></script>
+  <script src="assets/js/hub-order.js"></script>
 </body>
 </html>
