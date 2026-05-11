@@ -204,8 +204,12 @@
 }
 
 .pkg-card.featured {
-  border-color: var(--gold);
+  border-color: var(--divider);
   background: var(--gold-pale);
+}
+
+.pkg-card.featured:hover {
+  border-color: var(--divider);
 }
 
 .pkg-card.featured::before {
@@ -222,6 +226,35 @@
   text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 0 0 6px 6px;
+  white-space: nowrap;
+}
+
+.pkg-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 28px rgba(200,134,26,0.3), 0 0 0 1px var(--gold);
+}
+
+.pkg-card.selected:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 36px rgba(200,134,26,0.4), 0 0 0 1px var(--gold);
+  transform: translateY(-4px);
+}
+
+.pkg-card.selected::after {
+  content: '✓ Selected';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
   white-space: nowrap;
 }
 

@@ -193,7 +193,7 @@ function renderPricingCategory(catId, data) {
         data.cards.forEach((pkg, index) => {
             const featuredClass = pkg.featured ? 'featured' : '';
             html += `
-                <div class="pkg-card ${featuredClass}" onclick="scrollToPackageColumn(this, ${index})">
+                <div class="pkg-card ${featuredClass}" id="pkgCard-${catId}-${index}" onclick="selectPkgCard(this, '${catId}', ${index})">
                     <div class="pkg-name">${pkg.name}</div>
                     <h4>${pkg.tagline}</h4>
                     <ul class="pkg-includes">
@@ -257,25 +257,36 @@ function renderPricingCategory(catId, data) {
 }
 
 /**
- * Helper to scroll to the correct pricing table column on mobile
+ * Toggle selection on a pricing card. Only one card per category can be selected at a time.
+ * Clicking the already-selected card deselects it.
  * @param {HTMLElement} cardEl - The clicked package card
+ * @param {string} catId - The pricing category (residential, str, construction)
  * @param {number} index - The index of the package (0-based)
  */
-function scrollToPackageColumn(cardEl, index) {
+function selectPkgCard(cardEl, catId, index) {
+    const alreadySelected = cardEl.classList.contains('selected');
+
+    // Deselect all cards in this category
+    document.querySelectorAll(`.pkg-card[id^="pkgCard-${catId}-"]`).forEach(el => {
+        el.classList.remove('selected');
+    });
+
+    // Toggle selection on the clicked card
+    if (!alreadySelected) {
+        cardEl.classList.add('selected');
+    }
+
+    // Scroll the pricing table column into view
     const panel = cardEl.closest('.tab-panel');
     const wrapper = panel.querySelector('.pricing-table-wrapper');
     if (!wrapper) return;
 
-    // 1. Scroll page vertically to the table
     wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // 2. On mobile, scroll the table horizontally to the relevant column
     if (window.innerWidth <= 768) {
-        const targetTh = wrapper.querySelectorAll('th')[index + 1]; // +1 because col 0 is "Property Size"
+        const targetTh = wrapper.querySelectorAll('th')[index + 1];
         if (targetTh) {
-            // Delay slightly to coordinate with vertical scroll
             setTimeout(() => {
-                // Adjust scroll so column starts after the sticky first column (~160px)
                 const stickyColWidth = 140;
                 const scrollTarget = targetTh.offsetLeft - stickyColWidth;
                 wrapper.scrollTo({ left: scrollTarget, behavior: 'smooth' });
