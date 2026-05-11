@@ -233,9 +233,9 @@ nav > a:has(.nav-logo-text) {
 }
 
 .nav-book-btn {
-  height: 44px;
-  min-height: 44px;
-  max-height: 44px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
   padding: 0 20px;
   width: fit-content;
 }
@@ -369,9 +369,9 @@ nav > a:has(.nav-logo-text) {
   }
 
   #nav-rspn-btn .pov-btn {
-    height: 34px;
-    min-height: 34px;
-    max-height: 34px;
+    height: 36px;
+    min-height: 36px;
+    max-height: 36px;
     width: auto;
     padding: 0 12px;
     border-radius: 8px;
@@ -439,9 +439,9 @@ nav > a:has(.nav-logo-text) {
   }
 
   #nav-rspn-btn .pov-btn {
-    height: 30px;
-    min-height: 30px;
-    max-height: 30px;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
     padding: 0 8px;
   }
 
