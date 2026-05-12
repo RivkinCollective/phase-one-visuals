@@ -74,6 +74,8 @@ const currentTheme = localStorage.getItem('theme');
 
 if (currentTheme) {
   document.documentElement.setAttribute('data-theme', currentTheme);
+} else {
+  document.documentElement.setAttribute('data-theme', 'dark');
 }
 
 if (themeToggle) {

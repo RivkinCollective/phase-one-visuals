@@ -305,6 +305,15 @@ nav > a:has(.nav-logo-text) {
     text-align: center;
   }
 
+  .nav-links li:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1px;
+    background: #2A2A2A;
+    margin: 0 auto;
+  }
+
   .nav-links.active li {
     opacity: 1;
     transform: translateX(0);
@@ -412,7 +421,7 @@ nav > a:has(.nav-logo-text) {
 
   .nav-links {
     width: 100%;
-    padding: 40px 24px;
+    padding: 48px 24px 32px;
     gap: 2px;
   }
 

@@ -10,6 +10,10 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://phaseonevisuals.com/about">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#111111">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googleapis.com https://*.firebasestorage.app; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://api.stripe.com; frame-src https://js.stripe.com https://hooks.stripe.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta property="og:image" content="https://phaseonevisuals.com/assets/img/loading.png">
+  <meta name="twitter:image" content="https://phaseonevisuals.com/assets/img/loading.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <base href="./">
@@ -151,6 +155,190 @@
       </div>
     </div>
   </footer>
+
+
+  <!-- ─── BOOKING MODAL ─── -->
+  <div class="booking-modal-overlay" id="bookingModal">
+    <div class="booking-modal">
+      <button class="booking-modal-close" id="bookingModalClose" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="booking-modal-header">
+        <h3>What Are You Looking For?</h3>
+        <p>Select your service type to get started.</p>
+      </div>
+      <div class="booking-modal-options">
+        <!-- REAL ESTATE & CONSTRUCTION OPTION -->
+        <div class="booking-option booking-option-cons" id="bookingConsOption">
+          <div class="booking-option-icon">
+            <svg viewBox="0 0 44 44" fill="none">
+              <rect x="8" y="22" width="28" height="18" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <polyline points="4,22 22,6 40,22" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linejoin="round" />
+              <rect x="17" y="30" width="10" height="10" fill="none" stroke="var(--gold)" stroke-width="1.4" />
+              <line x1="36" y1="4" x2="36" y2="28" stroke="var(--gold)" stroke-width="1.4" />
+            </svg>
+          </div>
+          <h4>Real Estate &amp; Construction</h4>
+          <p>Professional photography, video, 3D tours for listings — and progress documentation for builders, developers, and contractors across NJ &amp; PA.</p>
+          <div class="booking-cons-actions">
+            <button class="booking-cons-btn booking-cons-form" id="bookingConsForm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              Request a Quote
+            </button>
+            <a href="mailto:info@phaseonevisuals.com" class="booking-cons-btn booking-cons-call">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Email Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CONSTRUCTION FORM MODAL ─── -->
+  <div class="modal-overlay" id="constructionFormModal">
+    <div class="modal-panel modal-panel--form">
+      <button class="modal-close" id="constructionFormClose" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-header">
+        <div class="modal-badge">Construction</div>
+        <h3>Request a Quote</h3>
+        <p>Tell us about your project and we'll put together a custom package.</p>
+      </div>
+      <form id="constructionForm" class="cf-form">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>Full Name <span class="cf-req">*</span></label>
+            <input type="text" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="cf-field">
+            <label>Email <span class="cf-req">*</span></label>
+            <input type="email" name="email" placeholder="john@company.com" required>
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="cf-field">
+            <label>Company</label>
+            <input type="text" name="company" placeholder="Your firm or organization">
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>Project Type <span class="cf-req">*</span></label>
+            <div class="cf-select-wrap">
+              <select name="projectType" required>
+                <option value="" disabled selected>Select project type</option>
+                <option value="new-construction">New Construction</option>
+                <option value="renovation">Renovation / Remodel</option>
+                <option value="commercial">Commercial Development</option>
+                <option value="infrastructure">Infrastructure</option>
+                <option value="multi-family">Multi-Family / Apartment</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label>Project Location</label>
+            <input type="text" name="location" id="cf-location" placeholder="City, State or full address" autocomplete="off">
+          </div>
+        </div>
+        <div class="cf-field cf-field--full">
+          <label>Services Interested In</label>
+          <div class="cf-checkbox-grid">
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="progress-photography">
+              <span>Progress Photography</span>
+            </label>
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="video">
+              <span>Video Documentation (4K)</span>
+            </label>
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="drone">
+              <span>Drone / Aerial</span>
+            </label>
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="360-tour">
+              <span>360° Interactive Tour</span>
+            </label>
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="before-after">
+              <span>Before & After Package</span>
+            </label>
+            <label class="cf-checkbox">
+              <input type="checkbox" name="services" value="social-reel">
+              <span>Social Highlight Reel</span>
+            </label>
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>Estimated Timeline</label>
+            <div class="cf-select-wrap">
+              <select name="timeline">
+                <option value="" disabled selected>Select timeframe</option>
+                <option value="immediate">Starting immediately</option>
+                <option value="1-month">Within 1 month</option>
+                <option value="3-months">1–3 months</option>
+                <option value="6-months">3–6 months</option>
+                <option value="planning">Planning / TBD</option>
+              </select>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label>Number of Visits Needed</label>
+            <div class="cf-select-wrap">
+              <select name="visitCount">
+                <option value="" disabled selected>Select</option>
+                <option value="1">1 Visit</option>
+                <option value="2">2 Visits (Before & After)</option>
+                <option value="3">3 Visits</option>
+                <option value="5">5 Visits</option>
+                <option value="custom">Custom / Ongoing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="cf-field cf-field--full">
+          <label>Project Details</label>
+          <textarea name="details" rows="3" placeholder="Tell us about your project scope, milestones, or any special requirements..."></textarea>
+        </div>
+        <label class="cf-checkbox cf-consent-check" style="margin-top:8px">
+          <input type="checkbox" name="consent" required>
+          <span>I have read and agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>, and consent to the processing of my personal data as described therein.</span>
+        </label>
+        <button type="submit" class="cf-submit">
+          <span>Submit Inquiry</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
