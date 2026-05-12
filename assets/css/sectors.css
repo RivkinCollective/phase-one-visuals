@@ -18,7 +18,7 @@
     padding: 60px 60px 48px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     position: relative;
@@ -156,9 +156,7 @@
     color: var(--gold);
   }
 
-  .sector-features li:last-child {
-    border-bottom: none;
-  }
+  
 
   .sector-features li::after {
     content: ' —';
@@ -172,7 +170,7 @@
   .sector-panel {
     padding: 60px;
     min-height: auto;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .sector-panel h2 {
