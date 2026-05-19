@@ -7,3 +7,6 @@ Phase One Visuals - AI \[3-22-2026\]/
 .env
 *.log
 Thumbs.db
+
+# Local Netlify folder
+.netlify

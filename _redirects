@@ -1,0 +1,10 @@
+# Redirect Cloudflare Pages subdomain → custom domain (once domain is configured)
+https://phaseonevisuals.pages.dev/* https://phaseonevisuals.com/:splat 301
+
+# Clean URL rewrites (internal serve — same as before)
+/about /about.html 200
+/privacy /privacy.html 200
+/terms /terms.html 200
+/disclaimer /disclaimer.html 200
+/audit /audit.html 200
+/hub /hub/index.html 200
